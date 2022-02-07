@@ -1,8 +1,13 @@
 @import "~bootstrap/scss/bootstrap";
 @import "./header.scss";
+@import "./home.scss";
 
 * {
   padding: 0rem;
   margin: 0;
   box-sizing: border-box;
+}
+
+.main-container {
+  min-height: 60vh;
 }

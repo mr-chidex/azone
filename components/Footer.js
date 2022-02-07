@@ -3,7 +3,7 @@ import React from "react";
 const Footer = () => {
   return (
     <footer>
-      <span>All right reserved</span>
+      <div style={{ textAlign: "center" }}>All right reserved</div>
     </footer>
   );
 };

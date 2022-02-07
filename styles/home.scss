@@ -1,0 +1,15 @@
+.Home {
+  .product-card {
+    margin-bottom: 2rem;
+
+    img {
+      height: 18rem;
+      object-fit: cover;
+    }
+
+    button {
+      display: block;
+      margin: 0 auto;
+    }
+  }
+}

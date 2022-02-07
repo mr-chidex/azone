@@ -3,18 +3,14 @@ import Head from "next/head";
 import { Container } from "react-bootstrap";
 
 import Header from "./Header";
-import Footer from "./footer";
+import Footer from "./Footer";
 
 const Layout = ({ children }) => {
   return (
     <>
-      <Head>
-        <title>Azone</title>
-      </Head>
-
       <Header />
 
-      <Container>{children}</Container>
+      <Container className="main-container">{children}</Container>
 
       <Footer />
     </>

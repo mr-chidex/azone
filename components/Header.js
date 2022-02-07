@@ -1,6 +1,7 @@
 import React from "react";
+import NextLink from "next/link";
+
 import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
-import Link from "next/link";
 
 const Header = () => {
   return (
@@ -12,11 +13,11 @@ const Header = () => {
       variant="dark"
     >
       <Container>
-        <Link href="/">
+        <NextLink href="/">
           <a>
             <Navbar.Brand>Azone</Navbar.Brand>
           </a>
-        </Link>
+        </NextLink>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
 
         <Navbar.Collapse id="responsive-navbar-nav">
@@ -38,10 +39,17 @@ const Header = () => {
           </Nav>
 
           <Nav>
-            <Nav.Link href="#deets">More deets</Nav.Link>
-            <Nav.Link eventKey={2} href="#memes">
-              Dank memes
-            </Nav.Link>
+            <NextLink href="/cart">
+              <a>
+                <Nav.Link href="/cart">Cart</Nav.Link>
+              </a>
+            </NextLink>
+
+            <NextLink href="/login">
+              <a>
+                <Nav.Link href="/cart">Login</Nav.Link>
+              </a>
+            </NextLink>
           </Nav>
         </Navbar.Collapse>
       </Container>
