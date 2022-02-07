@@ -10,6 +10,7 @@ export const data = {
       numReviews: 10,
       countInStock: 20,
       description: "A nice white shirt",
+      slug: "white-shirt",
     },
     {
       name: "Black Shirt",
@@ -21,6 +22,7 @@ export const data = {
       numReviews: 10,
       countInStock: 20,
       description: "A nice white shirt",
+      slug: "black-shirt",
     },
     {
       name: "Ash Shirt",
@@ -32,6 +34,7 @@ export const data = {
       numReviews: 10,
       countInStock: 10,
       description: "A nice white shirt",
+      slug: "ash-shirt",
     },
     {
       name: "Band",
@@ -43,6 +46,7 @@ export const data = {
       numReviews: 10,
       countInStock: 20,
       description: "A nice band",
+      slug: "band",
     },
     {
       name: "red Shirt",
@@ -54,6 +58,19 @@ export const data = {
       numReviews: 10,
       countInStock: 20,
       description: "A nice white shirt",
+      slug: "red-shirt",
+    },
+    {
+      name: "wrist-band",
+      category: "bands",
+      image: "/images/2.jpg",
+      price: 70,
+      brand: "Varsace",
+      rating: 4.5,
+      numReviews: 10,
+      countInStock: 20,
+      description: "A nice white shirt",
+      slug: "wrist-band",
     },
   ],
 };
