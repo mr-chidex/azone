@@ -1,5 +1,6 @@
 import SSRProvider from "react-bootstrap/SSRProvider";
 
+import { wrapper } from "../redux/store";
 import Layout from "../components/Layout";
 import "../styles/all.scss";
 
@@ -13,4 +14,4 @@ function MyApp({ Component, pageProps }) {
   );
 }
 
-export default MyApp;
+export default wrapper.withRedux(MyApp);
