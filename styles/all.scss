@@ -30,3 +30,9 @@ body {
     background-color: $primary;
   }
 }
+
+#nprogress .bar {
+  background: #6600ff;
+  height: 2px;
+  border-radius: 4px;
+}
