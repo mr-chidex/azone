@@ -1,15 +1,16 @@
-import SSRProvider from "react-bootstrap/SSRProvider";
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 import { wrapper } from "../redux/store";
 import Layout from "../components/Layout";
 import "../styles/all.scss";
-import { useEffect } from "react";
+import NoSsr from "../components/NoSsr";
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
+  NProgress.configure({ trickle: false });
   const handleStart = (_) => {
     NProgress.start();
   };
@@ -30,11 +31,11 @@ function MyApp({ Component, pageProps }) {
   }, [router]);
 
   return (
-    <SSRProvider>
+    <NoSsr>
       <Layout>
         <Component {...pageProps} />
       </Layout>
-    </SSRProvider>
+    </NoSsr>
   );
 }
 

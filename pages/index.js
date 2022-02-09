@@ -30,7 +30,7 @@ export default function Home() {
                     <Card.Img variant="top" src={prod.image} />
                   </a>
                 </Link>
-                <Card.Body>
+                <Card.Body className="card-body">
                   <Card.Title className="text-capitalize">
                     {prod.name}
                   </Card.Title>

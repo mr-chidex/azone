@@ -5,4 +5,17 @@
   a {
     text-decoration: none;
   }
+
+  .switch {
+    display: flex;
+    align-items: center;
+  }
+  .cirle-switch {
+    height: 30px;
+    width: 30px;
+    background-color: white;
+    border-radius: 50%;
+    cursor: pointer;
+    border: solid 4px $alt;
+  }
 }

@@ -15,5 +15,10 @@
         box-shadow: none;
       }
     }
+
+    .card-body {
+      background-color: $white;
+      color: $black;
+    }
   }
 }

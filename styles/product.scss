@@ -1,6 +1,11 @@
 .product {
-  a.active {
-    color: #696666;
+  a {
+    color: $alt;
+    text-decoration: none;
+  }
+
+  .active {
+    color: #b8acac !important;
   }
 
   .name {
@@ -9,9 +14,10 @@
   }
 
   .price {
-    background-color: #fff;
+    background-color: $white;
     box-shadow: 2px 3px 10px rgba(165, 164, 164, 0.5);
     padding: 1rem;
     height: fit-content;
+    color: $black;
   }
 }

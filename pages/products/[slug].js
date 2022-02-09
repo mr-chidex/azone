@@ -2,7 +2,7 @@ import React from "react";
 import Head from "next/head";
 
 import { data } from "../../utils/data";
-import { Breadcrumb, Button, Col, Row } from "react-bootstrap";
+import { Breadcrumb, Button, Col, Container, Row } from "react-bootstrap";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -33,73 +33,73 @@ const Product = ({ product }) => {
         <meta name="description" content={product.description} />
       </Head>
 
-      <main className="product">
-        <Breadcrumb>
-          <Breadcrumb.Item>
-            <Link href="/">
-              <a className="text-dark">Back</a>
+      <Container>
+        <main className="product">
+          <Breadcrumb>
+            <Link href="/" passHref={true}>
+              <Breadcrumb.Item>Back</Breadcrumb.Item>
             </Link>
-          </Breadcrumb.Item>
-          <Breadcrumb.Item>
-            <Link href={`/products/${product.slug}`}>
-              <a className="active">{product.name}</a>
+            <Link href={`/products/${product.slug}`} passHref={true}>
+              <Breadcrumb.Item>
+                <span className="active">{product.name}</span>
+              </Breadcrumb.Item>
             </Link>
-          </Breadcrumb.Item>
-        </Breadcrumb>
+          </Breadcrumb>
 
-        <Row>
-          <Col md={6} sm={12}>
-            <Image
-              src={product.image}
-              alt={product.name}
-              width={640}
-              height={640}
-              layout="responsive"
-            />
-          </Col>
+          <Row>
+            <Col md={6} sm={12}>
+              <Image
+                src={product.image}
+                alt={product.name}
+                width={640}
+                height={640}
+                layout="responsive"
+              />
+            </Col>
 
-          <Col md={6} sm={12} className="mt-2">
-            <Row>
-              <Col xs={12} md={6}>
-                <h1 className="name">{product.name}</h1>
-                <p>
-                  <span className="fw-bolder">Category</span>:{" "}
-                  {product.category}
-                </p>
-                <p>
-                  <span className="fw-bolder">Brand</span>: {product.brand}
-                </p>
-                <p>
-                  <span className="fw-bolder">Ratings</span>: {product.rating}{" "}
-                  stars ({product.numReviews} reviews)
-                </p>
-                <p>
-                  <span className="fw-bolder">Description</span>:{" "}
-                  {product.description}
-                </p>
-              </Col>
-
-              <Col xs={12} md={6} className="price mt-2">
-                <div className="d-flex justify-content-between fw-bold">
-                  <span>Price</span>
-                  <p>${product.price}</p>
-                </div>
-
-                <div className="d-flex justify-content-between fw-bold">
-                  <span>Status</span>
+            <Col md={6} sm={12} className="mt-2">
+              <Row>
+                <Col xs={12} md={6}>
+                  <h1 className="name">{product.name}</h1>
                   <p>
-                    {product.countInStock > 1 ? "In stock" : "Not in stock"}
+                    <span className="fw-bolder">Category</span>:{" "}
+                    {product.category}
                   </p>
-                </div>
+                  <p>
+                    <span className="fw-bolder">Brand</span>: {product.brand}
+                  </p>
+                  <p>
+                    <span className="fw-bolder">Ratings</span>: {product.rating}{" "}
+                    stars ({product.numReviews} reviews)
+                  </p>
+                  <p>
+                    <span className="fw-bolder">Description</span>:{" "}
+                    {product.description}
+                  </p>
+                </Col>
 
-                <div className="d-grid">
-                  <Button className="button fw-bolder">Add To Cart</Button>
-                </div>
-              </Col>
-            </Row>
-          </Col>
-        </Row>
-      </main>
+                <Col xs={12} md={6} className="price mt-2">
+                  <div className="d-flex justify-content-between fw-bold">
+                    <span>Price</span>
+                    <p>${product.price}</p>
+                  </div>
+
+                  <div className="d-flex justify-content-between fw-bold">
+                    <span>Status</span>
+                    <p>
+                      {product.countInStock > 1 ? "In stock" : "Not in stock"}
+                    </p>
+                  </div>
+
+                  <div className="d-grid">
+                    <Button className="button fw-bolder">Add To Cart</Button>
+                  </div>
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+        </main>
+      </Container>
     </>
   );
 };

@@ -1,16 +1,24 @@
 import React from "react";
-import Head from "next/head";
 import { Container } from "react-bootstrap";
 
 import Header from "./Header";
 import Footer from "./Footer";
+import { useDarkMode } from "../utils/UI";
+import colors from "../utils/colors";
 
 const Layout = ({ children }) => {
+  const darkMode = useDarkMode();
+
+  const mode = {
+    background: darkMode ? colors.dark : colors.light,
+    color: darkMode ? colors.white : colors.black,
+  };
+
   return (
     <>
       <Header />
 
-      <Container className="main-container">
+      <Container fluid className="main-container" style={mode}>
         {children}
 
         <Footer />
