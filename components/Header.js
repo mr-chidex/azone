@@ -9,10 +9,10 @@ const Header = () => {
       className="Header"
       collapseOnSelect
       expand="lg"
-      bg="dark"
+      // bg="dark"
       variant="dark"
     >
-      <Container>
+      <Container fluid>
         <NextLink href="/">
           <a>
             <Navbar.Brand>Azone</Navbar.Brand>

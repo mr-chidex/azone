@@ -1,6 +1,10 @@
 @import "~bootstrap/scss/bootstrap";
+@import "./var";
 @import "./header.scss";
 @import "./home.scss";
+@import "./product.scss";
+@import "./variables";
+@import "./bootswatch";
 
 * {
   padding: 0rem;
@@ -8,10 +12,21 @@
   box-sizing: border-box;
 }
 
-.main-container {
-  min-height: 60vh;
+body {
+  background: $white;
 }
 
-a.active {
-  color: #696666;
+.main-container {
+  min-height: 60vh;
+  background-color: $secondary;
+  padding: 1rem 1.5rem;
+}
+
+.button {
+  background-color: $primary;
+
+  &:hover,
+  &:focus {
+    background-color: $primary;
+  }
 }

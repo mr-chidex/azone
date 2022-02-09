@@ -19,32 +19,32 @@ export default function Home() {
       </Head>
 
       <Container className="Home">
-        <h1>Products</h1>
+        <h1 className="fw-bolder">Products</h1>
 
         <Row>
-          {data.products.map((prod) => (
-            <>
-              <Col>
-                <Card style={{ width: "14rem" }} className="product-card">
-                  <Link href={`/products/${prod.slug}`}>
-                    <a title={prod.name}>
-                      <Card.Img variant="top" src={prod.image} />
-                    </a>
-                  </Link>
-                  <Card.Body>
-                    <Card.Title>{prod.name}</Card.Title>
-                    <Card.Text>{prod.description}</Card.Text>
-                    <Card.Text>${prod.price}</Card.Text>
-                    <Button
-                      onClick={(e) => getProductHandler(prod.slug)}
-                      variant="outline-dark"
-                    >
-                      Add To Cart
-                    </Button>
-                  </Card.Body>
-                </Card>
-              </Col>
-            </>
+          {data.products.map((prod, ind) => (
+            <Col key={ind + 1}>
+              <Card style={{ width: "18rem" }} className="product-card">
+                <Link href={`/products/${prod.slug}`}>
+                  <a title={prod.name}>
+                    <Card.Img variant="top" src={prod.image} />
+                  </a>
+                </Link>
+                <Card.Body>
+                  <Card.Title className="text-capitalize">
+                    {prod.name}
+                  </Card.Title>
+                  <Card.Text>{prod.description}</Card.Text>
+                  <Card.Text>${prod.price}</Card.Text>
+                  <Button
+                    onClick={() => getProductHandler(prod.slug)}
+                    className="button fw-bold"
+                  >
+                    Details
+                  </Button>
+                </Card.Body>
+              </Card>
+            </Col>
           ))}
         </Row>
       </Container>
