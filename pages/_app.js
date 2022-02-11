@@ -2,6 +2,7 @@ import NProgress from "nprogress";
 import "nprogress/nprogress.css";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import "aos/dist/aos.css";
 
 import { wrapper } from "../redux/store";
 import Layout from "../components/Layout";
@@ -10,6 +11,7 @@ import NoSsr from "../components/NoSsr";
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
+
   NProgress.configure({ trickle: false });
   const handleStart = (_) => {
     NProgress.start();

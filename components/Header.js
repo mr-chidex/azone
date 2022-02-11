@@ -25,11 +25,17 @@ const Header = () => {
 
   return (
     <>
-      <Navbar className="Header" collapseOnSelect expand="lg" variant="dark">
+      <Navbar
+        className="Header"
+        fixed="top"
+        collapseOnSelect
+        expand="lg"
+        variant="dark"
+      >
         <Container fluid>
           <NextLink href="/">
             <a>
-              <Navbar.Brand>Azone</Navbar.Brand>
+              <Navbar.Brand className="logo">Azone</Navbar.Brand>
             </a>
           </NextLink>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />

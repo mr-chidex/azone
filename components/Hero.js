@@ -1,18 +1,23 @@
 import Image from "next/image";
-import React from "react";
+import React, { useEffect } from "react";
+import AOS from "aos";
 
 const Hero = () => {
   const scrollHandler = () => {
-    window.scrollTo(window.innerWidth + 100, window.innerHeight + 100);
+    window.scrollTo(window.innerWidth, window.innerHeight);
   };
+
+  useEffect(() => {
+    AOS.init({ duration: 1200 });
+  }, []);
 
   return (
     <div className="hero">
       <div>
-        <h1 className="text-capitalize fw-bold">
+        <h1 data-aos="fade-down" className="text-capitalize fw-bold title">
           Look good, don&apos;t just feel it
         </h1>
-        <p className="text-center">
+        <p data-aos="fade-left" className="text-center fs-5">
           Buy quality, comfortable outfits and wears
         </p>
 

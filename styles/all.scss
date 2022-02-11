@@ -1,10 +1,11 @@
 @import "~bootstrap/scss/bootstrap";
+@import "./bootswatch";
+@import "./variables";
 @import "./var";
 @import "./header.scss";
 @import "./home.scss";
 @import "./product.scss";
-@import "./variables";
-@import "./bootswatch";
+@import "./hero.scss";
 
 * {
   padding: 0rem;
@@ -21,8 +22,12 @@ body {
 }
 
 .main-container {
-  min-height: 60vh;
-  padding: 1rem 1.5rem;
+  min-height: 80vh;
+  padding: 2rem 1.5rem 0;
+}
+
+.def-mag {
+  margin-top: 5rem;
 }
 
 .button {

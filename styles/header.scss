@@ -1,11 +1,31 @@
 .Header {
   padding: 1rem;
   background-color: $primary;
+  // background: transparent;
 
+  // border: none;
+  // box-shadow: none;
+  // box-shadow:0 1px 2px rgb(0 0 0 / 30%);
+  // opacity: 0;
   a {
     text-decoration: none;
   }
 
+  @mixin Logo {
+    color: lighten($primary, 25);
+    text-shadow: 2px 3px 5px #fff;
+  }
+
+  .logo {
+    font-size: 2rem;
+    text-decoration: none;
+    font-weight: 900;
+    @include Logo;
+
+    &:hover {
+      @include Logo;
+    }
+  }
   .switch {
     display: flex;
     align-items: center;

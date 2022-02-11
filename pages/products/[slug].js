@@ -1,10 +1,10 @@
 import React from "react";
 import Head from "next/head";
-
-import { data } from "../../utils/data";
 import { Breadcrumb, Button, Col, Container, Row } from "react-bootstrap";
 import Link from "next/link";
 import Image from "next/image";
+
+import { data } from "../../utils/data";
 
 export const getStaticPaths = async () => {
   const paths = data.products.map((prod) => ({ params: { slug: prod.slug } }));
@@ -34,7 +34,7 @@ const Product = ({ product }) => {
       </Head>
 
       <Container>
-        <main className="product">
+        <main className="product def-mag">
           <Breadcrumb>
             <Link href="/" passHref={true}>
               <Breadcrumb.Item>Back</Breadcrumb.Item>
