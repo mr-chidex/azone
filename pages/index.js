@@ -19,7 +19,7 @@ export default function Home() {
       </Head>
 
       <Container className="Home">
-        <h1 className="fw-bolder">Products</h1>
+        <h1 className="fw-bolder">Our Products</h1>
 
         <Row>
           {data.products.map((prod, ind) => (
@@ -31,16 +31,15 @@ export default function Home() {
                   </a>
                 </Link>
                 <Card.Body className="card-body">
-                  <Card.Title className="text-capitalize">
+                  <Card.Title className="text-capitalize text-center">
                     {prod.name}
                   </Card.Title>
-                  <Card.Text>{prod.description}</Card.Text>
-                  <Card.Text>${prod.price}</Card.Text>
+                  <Card.Text className="text-center">${prod.price}</Card.Text>
                   <Button
                     onClick={() => getProductHandler(prod.slug)}
                     className="button fw-bold"
                   >
-                    Details
+                    View Details
                   </Button>
                 </Card.Body>
               </Card>
