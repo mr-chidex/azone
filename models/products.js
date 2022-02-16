@@ -2,48 +2,55 @@ import mongoose from "mongoose";
 import { Schema } from "mongoose";
 import Joi from "joi";
 
-const productSchema = new Schema({
-  name: {
-    type: String,
-    required: true,
+const productSchema = new Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+    },
+    category: {
+      type: String,
+      required: true,
+    },
+    image: {
+      type: Object,
+      required: true,
+    },
+    price: {
+      type: Number,
+      required: true,
+      default: 0,
+    },
+    brand: {
+      type: String,
+      required: true,
+    },
+    rating: {
+      type: String,
+      required: true,
+      default: 0,
+    },
+    numReviews: {
+      type: Number,
+      required: true,
+      default: 0,
+    },
+    countInStock: {
+      type: Number,
+      required: true,
+    },
+    description: {
+      type: String,
+      required: true,
+    },
+    slug: {
+      type: String,
+      required: true,
+      unique: true,
+    },
   },
-  category: {
-    type: String,
-    required: true,
-  },
-  image: {
-    type: Object,
-    required: true,
-  },
-  price: {
-    type: Number,
-    required: true,
-  },
-  brand: {
-    type: String,
-    required: true,
-  },
-  rating: {
-    type: String,
-    default: 0,
-  },
-  numReviews: {
-    type: Number,
-    default: 0,
-  },
-  countInStock: {
-    type: Number,
-    required: true,
-  },
-  description: {
-    type: String,
-    required: true,
-  },
-  slug: {
-    type: String,
-    required: true,
-  },
-});
+  { timestamps: true }
+);
 
 const validate = (product) => {
   return Joi.object({
@@ -51,15 +58,15 @@ const validate = (product) => {
     category: Joi.string().trim().required(),
     price: Joi.number().trim().required(),
     brand: Joi.string().trim().required(),
-    rating: Joi.optional(),
-    numReviews: Joi.optional(),
+    rating: Joi.number().trim().required(),
+    numReviews: Joi.number().trim().required(),
     countInStock: Joi.number().trim().required(),
     description: Joi.string().trim().required(),
   }).schema(product);
 };
 
-console.log("mongoose models", mongoose.models);
-exports.Product =
+const Product =
   mongoose.models.Product || mongoose.model("Product", productSchema);
 
-exports.Validate = validate;
+export const Validate = validate;
+export default Product;
