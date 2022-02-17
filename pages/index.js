@@ -7,6 +7,7 @@ import { useEffect } from "react";
 
 import { connectDB, convertObj, disconnectDB } from "../libs/db";
 import { Product } from "../models/products";
+import Rating from "../components/Ratings";
 
 export default function Home({ products }) {
   const router = useRouter();
@@ -45,7 +46,12 @@ export default function Home({ products }) {
                   <Card.Title className="text-capitalize text-center">
                     {prod.name}
                   </Card.Title>
-                  <Card.Text className="text-center">${prod.price}</Card.Text>
+                  <Card.Text className="text-center">
+                    <Rating value={prod.rating} />
+                  </Card.Text>
+                  <Card.Text className="text-center fs-5">
+                    ${prod.price}
+                  </Card.Text>
                   <Button
                     onClick={() => getProductHandler(prod.slug)}
                     className="button fw-bold"

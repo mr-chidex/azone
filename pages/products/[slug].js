@@ -6,21 +6,10 @@ import Image from "next/image";
 
 import { Product as Prod } from "../../models/products";
 import { connectDB, convertObj, disconnectDB } from "../../libs/db";
-
-export const getServerSideProps = async (context) => {
-  const { slug } = context.params;
-  await connectDB();
-  const product = await Prod.findOne({ slug }).lean();
-
-  await disconnectDB();
-  return {
-    props: {
-      product: convertObj(product),
-    },
-  };
-};
+import Rating from "../../components/Ratings";
 
 const Product = ({ product }) => {
+  const addToCartHandler = () => {};
   return (
     <>
       <Head>
@@ -64,8 +53,12 @@ const Product = ({ product }) => {
                     <span className="fw-bolder">Brand</span>: {product.brand}
                   </p>
                   <p>
-                    <span className="fw-bolder">Ratings</span>: {product.rating}{" "}
-                    stars ({product.numReviews} reviews)
+                    <span className="fw-bolder">Ratings</span>:{" "}
+                    <Rating value={product.rating} />
+                  </p>
+                  <p>
+                    <span className="fw-bolder">No. of reviews</span>:{" "}
+                    {product.numReviews}
                   </p>
                   <p>
                     <span className="fw-bolder">Description</span>:{" "}
@@ -97,6 +90,19 @@ const Product = ({ product }) => {
       </Container>
     </>
   );
+};
+
+export const getServerSideProps = async (context) => {
+  const { slug } = context.params;
+  await connectDB();
+  const product = await Prod.findOne({ slug }).lean();
+
+  await disconnectDB();
+  return {
+    props: {
+      product: convertObj(product),
+    },
+  };
 };
 
 export default Product;
