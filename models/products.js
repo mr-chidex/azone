@@ -65,8 +65,7 @@ const validate = (product) => {
   }).schema(product);
 };
 
-const Product =
+export const Product =
   mongoose.models.Product || mongoose.model("Product", productSchema);
 
 export const Validate = validate;
-export default Product;

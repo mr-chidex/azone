@@ -3,11 +3,12 @@ import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import AOS from "aos";
-
-import { data } from "../utils/data";
 import { useEffect } from "react";
 
-export default function Home() {
+import { connectDB, convertObj, disconnectDB } from "../libs/db";
+import { Product } from "../models/products";
+
+export default function Home({ products }) {
   const router = useRouter();
 
   const getProductHandler = (slug) => {
@@ -28,7 +29,7 @@ export default function Home() {
         <h1 className="fw-bolder mb-3">Our Products</h1>
 
         <Row>
-          {data.products.map((prod, ind) => (
+          {products.map((prod, ind) => (
             <Col key={ind + 1}>
               <Card
                 style={{ width: "18rem" }}
@@ -60,3 +61,15 @@ export default function Home() {
     </>
   );
 }
+
+export const getServerSideProps = async () => {
+  await connectDB();
+  const products = await Product.find().lean();
+
+  await disconnectDB();
+  return {
+    props: {
+      products: products.map(convertObj),
+    },
+  };
+};

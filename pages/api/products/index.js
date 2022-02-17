@@ -1,6 +1,6 @@
 import nc from "next-connect";
 
-import Product from "../../../models/products";
+import { Product } from "../../../models/products";
 import { connectDB, disconnectDB } from "../../../libs/db";
 
 const handler = nc({
@@ -16,7 +16,7 @@ const handler = nc({
 handler.get(async (req, res) => {
   await connectDB();
 
-  const products = await Product.find({});
+  const products = await Product.find();
 
   await disconnectDB();
   res.json({ products });

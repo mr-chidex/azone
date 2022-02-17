@@ -4,23 +4,18 @@ import { Breadcrumb, Button, Col, Container, Row } from "react-bootstrap";
 import Link from "next/link";
 import Image from "next/image";
 
-import { data } from "../../utils/data";
+import { Product as Prod } from "../../models/products";
+import { connectDB, convertObj, disconnectDB } from "../../libs/db";
 
-export const getStaticPaths = async () => {
-  const paths = data.products.map((prod) => ({ params: { slug: prod.slug } }));
-  return {
-    paths,
-    fallback: false,
-  };
-};
+export const getServerSideProps = async (context) => {
+  const { slug } = context.params;
+  await connectDB();
+  const product = await Prod.findOne({ slug }).lean();
 
-export const getStaticProps = async (context) => {
-  const slug = context.params.slug;
-  const product = data.products.filter((prod) => prod.slug === slug)[0];
-
+  await disconnectDB();
   return {
     props: {
-      product: product,
+      product: convertObj(product),
     },
   };
 };
