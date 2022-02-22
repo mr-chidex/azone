@@ -2,14 +2,21 @@ import Head from "next/head";
 import Link from "next/link";
 import React, { useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+
+import { loginUser } from "../redux/actions/user";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
 
-  const loginHandler = (e) => {
+  const loginHandler = async (e) => {
     e.preventDefault();
+
+    dispatch(loginUser({ email, password }));
   };
+
   return (
     <>
       <Head>

@@ -25,13 +25,4 @@ handler.get(async (req, res) => {
   res.json({ users });
 });
 
-/**
- * @desc login user
- */
-handler.post(async (req, res) => {
-  console.log(req.body);
-
-  res.json({ message: "success" });
-});
-
 export default handler;
