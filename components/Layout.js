@@ -24,8 +24,7 @@ const Layout = ({ children }) => {
       {router.pathname === "/" && <Hero />}
 
       <Container fluid className="main-container" style={mode}>
-        {children}
-
+        <div className="children">{children}</div>
         <Footer />
       </Container>
     </>

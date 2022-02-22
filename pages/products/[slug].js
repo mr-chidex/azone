@@ -43,7 +43,7 @@ const Product = ({ product }) => {
       </Head>
 
       <Container>
-        <main className="product def-mag">
+        <main className="product default-margin">
           {alert && (
             <Alert variant="info" onClose={() => setAlert(false)} dismissible>
               <Alert.Heading>Sorry! Product out of stock!</Alert.Heading>

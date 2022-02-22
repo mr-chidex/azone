@@ -3,6 +3,7 @@ import NextLink from "next/link";
 import { Badge, Container, Form, Nav, Navbar } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Cookies from "js-cookie";
+import { useRouter } from "next/router";
 
 import { changeTheme } from "../redux/actions/UI";
 import { useDarkMode } from "../utils/UI";
@@ -11,6 +12,7 @@ import colors from "../utils/colors";
 const Header = () => {
   const dispatch = useDispatch();
   const darkMode = useDarkMode();
+  const router = useRouter();
 
   const { cart } = useSelector((state) => state.CART);
 
@@ -56,7 +58,10 @@ const Header = () => {
               </div>
 
               <NextLink href="/cart">
-                <Nav.Link href="/cart">
+                <Nav.Link
+                  className={router.pathname === "/" && "inactive"}
+                  href="/cart"
+                >
                   Cart
                   {cart?.cartItems?.length > 0 && (
                     <Badge pill bg="light">
@@ -67,7 +72,12 @@ const Header = () => {
               </NextLink>
 
               <NextLink href="/login">
-                <Nav.Link href="/login">Login</Nav.Link>
+                <Nav.Link
+                  className={router.pathname === "/" && "inactive"}
+                  href="/login"
+                >
+                  Login
+                </Nav.Link>
               </NextLink>
             </Nav>
           </Navbar.Collapse>
