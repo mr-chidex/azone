@@ -4,11 +4,14 @@ import Link from "next/link";
 import React from "react";
 import { Button, Col, Container, Row, Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
+import { useRouter } from "next/router";
+
 import { changeQty, removeFromCart } from "../redux/actions/cart";
 
 const Cart = () => {
   const { cart } = useSelector((state) => state.CART);
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const totalPrice = cart.cartItems.reduce((acc, curVal) => {
     return acc + curVal.price * curVal.qty;
@@ -24,6 +27,10 @@ const Cart = () => {
 
   const deleteHandler = (itemId) => {
     dispatch(removeFromCart(itemId));
+  };
+
+  const checkoutHandler = () => {
+    router.push("/shipping");
   };
 
   return (
@@ -114,13 +121,18 @@ const Cart = () => {
                 </Col>
 
                 <Col xs={12} md={3} className="checkout mt-2">
-                  <div className="d-flex  justify-content-between fw-bold">
+                  <div className="d-flex  justify-content-between">
                     <span>Subtotal({totalQty} item(s))</span>
                     <p>${totalPrice}</p>
                   </div>
 
                   <div className="d-grid">
-                    <Button className="button fw-bolder">Check Out</Button>
+                    <Button
+                      onClick={checkoutHandler}
+                      className="button fw-bolder"
+                    >
+                      Check Out
+                    </Button>
                   </div>
                 </Col>
               </Row>

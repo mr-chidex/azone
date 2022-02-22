@@ -52,7 +52,7 @@ const Login = () => {
             <p className="my-2">
               Don&apos;t have an account?{" "}
               <Link href="/signup">
-                <a>Sign up</a>
+                <a>Signup</a>
               </Link>
             </p>
           </section>

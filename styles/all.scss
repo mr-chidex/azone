@@ -37,10 +37,12 @@ body {
 
 .button {
   background-color: $primary;
+  box-shadow: none !important;
 
+  &:active,
   &:hover,
   &:focus {
-    background-color: $primary;
+    background-color: $primary !important;
   }
 }
 
