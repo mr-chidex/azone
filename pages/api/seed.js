@@ -1,6 +1,7 @@
 import nc from "next-connect";
 import { connectDB, disconnectDB } from "../../libs/db";
 import { Product } from "../../models/products";
+import { User } from "../../models/users";
 import { data } from "../../utils/data";
 
 const handler = nc({
@@ -16,6 +17,11 @@ const handler = nc({
 handler.get(async (req, res) => {
   await connectDB();
 
+  //seed default users
+  await User.deleteMany();
+  await User.insertMany(data.users);
+
+  //seed default products
   await Product.deleteMany();
   await Product.insertMany(data.products);
 
