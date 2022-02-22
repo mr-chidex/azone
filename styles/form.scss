@@ -1,0 +1,8 @@
+.form-container {
+  margin: 10rem auto;
+  width: 70vw;
+
+  @media (min-width: 768px) {
+    width: 40rem;
+  }
+}

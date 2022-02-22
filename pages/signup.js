@@ -3,23 +3,36 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
 
-const Login = () => {
+const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
 
-  const loginHandler = (e) => {
+  const signupHandler = (e) => {
     e.preventDefault();
   };
+
   return (
     <>
       <Head>
-        <title>Azone | Login</title>
+        <title>Azone | Signup</title>
       </Head>
 
       <Container>
         <main className="default-margin">
           <section className="form-container">
-            <Form onSubmit={loginHandler}>
+            <Form onSubmit={signupHandler}>
+              <Form.Group className="mb-3" controlId="name">
+                <Form.Label>Full Name</Form.Label>
+                <Form.Control
+                  size="lg"
+                  type="text"
+                  placeholder="John doe"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+              </Form.Group>
+
               <Form.Group className="mb-3" controlId="email">
                 <Form.Label>Email address</Form.Label>
                 <Form.Control
@@ -44,15 +57,15 @@ const Login = () => {
 
               <div className="d-grid gap-2">
                 <Button className="button fw-bold" type="submit">
-                  Login
+                  Sign Up
                 </Button>
               </div>
             </Form>
 
             <p className="my-2">
-              Don&apos;t have an account?{" "}
-              <Link href="/signup">
-                <a>Sign up</a>
+              Already have an account?{" "}
+              <Link href="/login">
+                <a>Login</a>
               </Link>
             </p>
           </section>
@@ -62,4 +75,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signup;
