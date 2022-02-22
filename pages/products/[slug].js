@@ -1,15 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
 import Head from "next/head";
-import { Breadcrumb, Button, Col, Container, Row } from "react-bootstrap";
+import {
+  Alert,
+  Breadcrumb,
+  Button,
+  Col,
+  Container,
+  Row,
+} from "react-bootstrap";
 import Link from "next/link";
 import Image from "next/image";
+import { useDispatch } from "react-redux";
 
 import { Product as Prod } from "../../models/products";
 import { connectDB, convertObj, disconnectDB } from "../../libs/db";
 import Rating from "../../components/Ratings";
+import { addToCartAction } from "../../redux/actions/cart";
 
 const Product = ({ product }) => {
-  const addToCartHandler = () => {};
+  const dispatch = useDispatch();
+  const [alert, setAlert] = useState(false);
+
+  const addToCartHandler = () => {
+    if (product.countInStock <= 0) {
+      setAlert(true);
+
+      setTimeout(() => {
+        setAlert(false);
+      }, 4000);
+
+      return;
+    }
+
+    dispatch(addToCartAction(product));
+  };
+
   return (
     <>
       <Head>
@@ -19,6 +44,13 @@ const Product = ({ product }) => {
 
       <Container>
         <main className="product def-mag">
+          {alert && (
+            <Alert variant="info" onClose={() => setAlert(false)} dismissible>
+              <Alert.Heading>Sorry! Product out of stock!</Alert.Heading>
+              <p>Please, check back later</p>
+            </Alert>
+          )}
+
           <Breadcrumb>
             <Link href="/" passHref={true}>
               <Breadcrumb.Item>Back</Breadcrumb.Item>
@@ -80,7 +112,12 @@ const Product = ({ product }) => {
                   </div>
 
                   <div className="d-grid">
-                    <Button className="button fw-bolder">Add To Cart</Button>
+                    <Button
+                      className="button fw-bolder"
+                      onClick={addToCartHandler}
+                    >
+                      Add To Cart
+                    </Button>
                   </div>
                 </Col>
               </Row>
