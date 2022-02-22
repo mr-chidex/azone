@@ -62,7 +62,7 @@ const validate = (product) => {
     numReviews: Joi.number().trim().required(),
     countInStock: Joi.number().trim().required(),
     description: Joi.string().trim().required(),
-  }).schema(product);
+  }).validate(product);
 };
 
 export const Product =
