@@ -83,6 +83,7 @@ const Cart = () => {
                               className="select form-select"
                               name="qty"
                               id=""
+                              value={item.qty}
                               onChange={(e) =>
                                 selectQtyHandler(item._id, e.target.value)
                               }

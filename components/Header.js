@@ -16,6 +16,9 @@ const Header = () => {
 
   const { cart } = useSelector((state) => state.CART);
 
+  const totalQty = cart.cartItems.reduce((acc, curVal) => {
+    return acc + parseInt(curVal.qty);
+  }, 0);
   const switchHandler = () => {
     dispatch(changeTheme(darkMode));
 
@@ -65,7 +68,7 @@ const Header = () => {
                   Cart
                   {cart?.cartItems?.length > 0 && (
                     <Badge pill bg="light">
-                      {cart.cartItems.length}
+                      {totalQty}
                     </Badge>
                   )}
                 </Nav.Link>

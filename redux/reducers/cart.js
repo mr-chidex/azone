@@ -17,15 +17,17 @@ export const CartReducer = (state = initailState, { type, payload }) => {
         (prod) => prod._id === newProd._id
       );
 
-      // const cartItems = prodExist
-      //   ? state.cart.cartItems.map((prod) =>
-      //       prod._id === newProd._id ? { ...prod, qty: prod.qty + 1 } : prod
-      //     )
-      //   : [...state.cart.cartItems, newProd];
-
       const cartItems = prodExist
-        ? state.cart.cartItems
+        ? state.cart.cartItems.map((prod) =>
+            prod._id === newProd._id
+              ? { ...prod, qty: parseInt(prod.qty) + 1 }
+              : prod
+          )
         : [...state.cart.cartItems, newProd];
+
+      // const cartItems = prodExist
+      //   ? state.cart.cartItems
+      //   : [...state.cart.cartItems, newProd];
 
       Cookies.set("cartItems", JSON.stringify(cartItems));
       return { ...state, cart: { ...state.cart, cartItems } };
