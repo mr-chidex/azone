@@ -1,19 +1,20 @@
 import Head from "next/head";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import AOS from "aos";
 import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 
 import { connectDB, convertObj, disconnectDB } from "../libs/db";
 import { Product } from "../models/products";
 import Rating from "../components/Ratings";
+import { addToCartAction } from "../redux/actions/cart";
 
 export default function Home({ products }) {
-  const router = useRouter();
+  const dispatch = useDispatch();
 
-  const getProductHandler = (slug) => {
-    router.push(`/products/${slug}`);
+  const addToCartHandler = (prod) => {
+    dispatch(addToCartAction(prod));
   };
 
   useEffect(() => {
@@ -52,11 +53,12 @@ export default function Home({ products }) {
                   <Card.Text className="text-center fs-5">
                     ${prod.price}
                   </Card.Text>
+
                   <Button
-                    onClick={() => getProductHandler(prod.slug)}
-                    className="button fw-bold"
+                    onClick={() => addToCartHandler(prod)}
+                    className="button fw-lighter"
                   >
-                    View Details
+                    ADD TO CART
                   </Button>
                 </Card.Body>
               </Card>

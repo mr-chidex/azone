@@ -1,13 +1,6 @@
 import React, { useState } from "react";
 import Head from "next/head";
-import {
-  Alert,
-  Breadcrumb,
-  Button,
-  Col,
-  Container,
-  Row,
-} from "react-bootstrap";
+import { Breadcrumb, Button, Col, Container, Row } from "react-bootstrap";
 import Link from "next/link";
 import Image from "next/image";
 import { useDispatch } from "react-redux";
@@ -19,19 +12,8 @@ import { addToCartAction } from "../../redux/actions/cart";
 
 const Product = ({ product }) => {
   const dispatch = useDispatch();
-  const [alert, setAlert] = useState(false);
 
   const addToCartHandler = () => {
-    if (product.countInStock <= 0) {
-      setAlert(true);
-
-      setTimeout(() => {
-        setAlert(false);
-      }, 4000);
-
-      return;
-    }
-
     dispatch(addToCartAction(product));
   };
 
@@ -44,13 +26,6 @@ const Product = ({ product }) => {
 
       <Container>
         <main className="product default-margin">
-          {alert && (
-            <Alert variant="info" onClose={() => setAlert(false)} dismissible>
-              <Alert.Heading>Sorry! Product out of stock!</Alert.Heading>
-              <p>Please, check back later</p>
-            </Alert>
-          )}
-
           <Breadcrumb>
             <Link href="/" passHref={true}>
               <Breadcrumb.Item>Back</Breadcrumb.Item>
