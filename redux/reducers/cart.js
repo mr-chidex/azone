@@ -1,5 +1,14 @@
 import Cookies from "js-cookie";
-import { ADD_TO_CART, QTY_CHANGE, REMOVE_FROM_CART } from "../constants/cart";
+import {
+  ADD_TO_CART,
+  QTY_CHANGE,
+  REMOVE_FROM_CART,
+  SAVE_SHIPPING_ADDRESS,
+} from "../constants/cart";
+
+const address = Cookies.get("shippingAddress")
+  ? JSON.parse(Cookies.get("shippingAddress"))
+  : {};
 
 const initailState = {
   cart: {
@@ -7,6 +16,7 @@ const initailState = {
       ? JSON.parse(Cookies.get("cartItems"))
       : [],
   },
+  shippingAddress: { ...address },
 };
 
 export const CartReducer = (state = initailState, { type, payload }) => {
@@ -49,6 +59,9 @@ export const CartReducer = (state = initailState, { type, payload }) => {
 
       Cookies.set("cartItems", JSON.stringify(cartItems));
       return { ...state, cart: { ...state.cart, cartItems } };
+    }
+    case SAVE_SHIPPING_ADDRESS: {
+      return { ...state, shippingAddress: payload };
     }
     default:
       return state;

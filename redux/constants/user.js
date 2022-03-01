@@ -7,3 +7,4 @@ export const SIGNUP_SUCCESS = "SIGNUP_SUCCESS";
 export const SIGNUP_FAILED = "SIGNUP_FAILED";
 export const USER_TOKEN = "USER_TOKEN";
 export const SET_USER = "SET_USER";
+export const USER = "USER";

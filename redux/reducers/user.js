@@ -1,3 +1,6 @@
+import Cookies from "js-cookie";
+import jwtDecode from "jwt-decode";
+
 import {
   LOGIN_REQUEST,
   LOGIN_FAILED,
@@ -7,11 +10,12 @@ import {
   SIGNUP_REQUEST,
   SIGNUP_SUCCESS,
   SIGNUP_FAILED,
+  USER,
 } from "../constants/user";
 
 const initailState = {
-  userData: {},
-  isAuth: false,
+  userData: Cookies.get(USER) ? JSON.parse(Cookies.get(USER)) : {},
+  isAuth: Cookies.get(USER) ? true : false,
 };
 
 export const userReducer = (state = initailState, { type, payload }) => {

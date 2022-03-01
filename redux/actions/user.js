@@ -12,6 +12,7 @@ import {
   SIGNUP_FAILED,
   SIGNUP_REQUEST,
   SIGNUP_SUCCESS,
+  USER,
   USER_TOKEN,
 } from "../constants/user";
 
@@ -44,6 +45,7 @@ export const loginUser =
   };
 
 export function setUser(data) {
+  Cookies.set(USER, JSON.stringify(data));
   return { type: SET_USER, payload: data };
 }
 
