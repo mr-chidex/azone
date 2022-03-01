@@ -19,7 +19,7 @@ const handler = nc({
 handler.get(async (req, res) => {
   await connectDB();
 
-  const users = await User.find();
+  const users = await User.find().select("-password");
 
   await disconnectDB();
   res.json({ users });
