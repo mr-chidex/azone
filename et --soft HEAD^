@@ -1,0 +1,167 @@
+[33mcommit 74c7723da20e03d7667c39871d2baa8e93428e03[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: chi-dex <chimobimbah@yahoo.com>
+Date:   Tue Mar 1 09:20:19 2022 +0100
+
+    clean up console log, edit readme
+
+[33mcommit 456d3eedce8f5fa6ae138e17df66d6fdcc46cb26[m
+Author: chi-dex <chimobimbah@yahoo.com>
+Date:   Tue Feb 22 23:20:20 2022 +0100
+
+    redux set up for user login
+
+[33mcommit b3b22ae15b1c1f1825e2ff4e128586140197351e[m
+Author: chi-dex <chimobimbah@yahoo.com>
+Date:   Tue Feb 22 22:14:20 2022 +0100
+
+    login routes added
+
+[33mcommit 97f5bbab426c4558325343ade38c687dbe4c59cb[m
+Author: chi-dex <chimobimbah@yahoo.com>
+Date:   Tue Feb 22 21:27:47 2022 +0100
+
+    fix joi error
+
+[33mcommit ce9981cefdca873c7a5b921d06d185286a387be5[m
+Author: chi-dex <chimobimbah@yahoo.com>
+Date:   Tue Feb 22 20:50:06 2022 +0100
+
+    added user model and seeded default users
+
+[33mcommit 77dbab5b99eb61f703ae7fe2829db0ca549c8863[m
+Author: chi-dex <chimobimbah@yahoo.com>
+Date:   Tue Feb 22 20:27:00 2022 +0100
+
+    shipping page started
+
+[33mcommit fd9f55e81d41beed8566bf12ce2372aec19f0769[m
+Author: chi-dex <chimobimbah@yahoo.com>
+Date:   Tue Feb 22 20:09:21 2022 +0100
+
+    added login and signup page
+
+[33mcommit 6f233cdadcaef43299270bf2fc04e56fa1e414a9[m
+Author: chi-dex <chimobimbah@yahoo.com>
+Date:   Tue Feb 22 19:36:43 2022 +0100
+
+    change in cart
+
+[33mcommit 932d2bb034d49ec4bcff74394779857fb04bc163[m
+Author: chi-dex <chimobimbah@yahoo.com>
+Date:   Tue Feb 22 03:28:24 2022 +0100
+
+    clean, add add to cart to home screen
+
+[33mcommit ff479cd48acb7a9715fa1750898cd23ac7275681[m
+Author: chi-dex <chimobimbah@yahoo.com>
+Date:   Tue Feb 22 03:12:01 2022 +0100
+
+    implement cart ui, with add to cart, delete from cart and qty update funcs
+
+[33mcommit f2033fe28fda68234b8bed1f9e5360eb3f86382d[m
+Author: chi-dex <chimobimbah@yahoo.com>
+Date:   Tue Feb 22 01:30:32 2022 +0100
+
+    implement add to cart function and redux action
+
+[33mcommit 68f8b847239b114d2ceaaf1144adf784c7dfd599[m
+Author: Chimobi Mbah <mbahchiboy2@gmail.com>
+Date:   Thu Feb 17 01:25:06 2022 +0100
+
+    added rating
+
+[33mcommit 88cfd3a87634784f65f893d088b54f00af3994e0[m
+Author: Chimobi Mbah <mbahchiboy2@gmail.com>
+Date:   Thu Feb 17 01:05:12 2022 +0100
+
+    connect uui to database
+
+[33mcommit 9228076d769440218fd36b5aa89549abada8887a[m
+Author: Chimobi Mbah <mbahchiboy2@gmail.com>
+Date:   Thu Feb 17 00:25:44 2022 +0100
+
+    add next connect,mongoose func and seeded data for initial db content
+
+[33mcommit ce902f0864280d596050a540508d1b29425efb74[m
+Author: Chimobi Mbah <mbahchiboy2@gmail.com>
+Date:   Sat Feb 12 12:48:21 2022 +0100
+
+    set product schema
+
+[33mcommit b1da08de2e424b8d27c475d3c9655046885470dd[m
+Author: Chimobi Mbah <mbahchiboy2@gmail.com>
+Date:   Sat Feb 12 12:10:28 2022 +0100
+
+    established db connetion
+
+[33mcommit 2a80d04cb41d11ec511e6d7a32ec80dc80b70d2e[m
+Author: Chimobi Mbah <mbahchiboy2@gmail.com>
+Date:   Fri Feb 11 13:45:43 2022 +0100
+
+    add animation effect
+
+[33mcommit cb8edda610ffde793d7b95c6c008b12107c4a3f2[m
+Author: Chimobi Mbah <mbahchiboy2@gmail.com>
+Date:   Fri Feb 11 02:52:23 2022 +0100
+
+    hero pane added to home
+
+[33mcommit 8646ba160979dba2f3d9e8aba55080d14dd8dcc0[m
+Author: Chimobi Mbah <mbahchiboy2@gmail.com>
+Date:   Thu Feb 10 00:46:36 2022 +0100
+
+    added darkmode UI, and fixed NoSsr Error
+
+[33mcommit 8ebf9e946e46ec18f53a8cd0ace8df645962de84[m
+Author: Chimobi Mbah <mbahchiboy2@gmail.com>
+Date:   Wed Feb 9 18:44:04 2022 +0100
+
+    progress bar added
+
+[33mcommit ab4a4e5c4627f6e60bc02f46fa4bdef7840a43f3[m
+Author: Chimobi Mbah <mbahchiboy2@gmail.com>
+Date:   Wed Feb 9 18:03:45 2022 +0100
+
+    redux setup
+
+[33mcommit cff10d3544246ad7f834a16a11a8474a883b584b[m
+Author: Chimobi Mbah <mbahchiboy2@gmail.com>
+Date:   Wed Feb 9 17:47:44 2022 +0100
+
+    edit style
+
+[33mcommit 24f7a4df768533a48be688f24bd14a4fd4e71bb8[m
+Author: Chimobi Mbah <mbahchiboy2@gmail.com>
+Date:   Mon Feb 7 23:36:43 2022 +0100
+
+    started product screen
+
+[33mcommit f9fa27cf7893adb652ff5cd1bbc0fc6997c1cad5[m
+Author: Chimobi Mbah <mbahchiboy2@gmail.com>
+Date:   Mon Feb 7 19:08:48 2022 +0100
+
+    added demo home
+
+[33mcommit d6372ced28fc9b1b49acddd130dcc69edec41ebb[m
+Author: Chimobi Mbah <mbahchiboy2@gmail.com>
+Date:   Mon Feb 7 18:16:06 2022 +0100
+
+    header added
+
+[33mcommit 632f68857342a1625f72751ec627cd64245b4864[m
+Author: Chimobi Mbah <mbahchiboy2@gmail.com>
+Date:   Mon Feb 7 17:54:07 2022 +0100
+
+    header,footer and layout components added
+
+[33mcommit 2996a142615670f178d728e299886b6c329e6a95[m
+Author: Chimobi Mbah <mbahchiboy2@gmail.com>
+Date:   Mon Feb 7 10:45:12 2022 +0100
+
+    first commit
+
+[33mcommit 3e94aa3eb48454b7838ab67e47cdd8f2b548c71d[m
+Author: Chimobi Mbah <mbahchiboy2@gmail.com>
+Date:   Mon Feb 7 10:13:20 2022 +0100
+
+    Initial commit from Create Next App

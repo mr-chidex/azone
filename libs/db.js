@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 export const connectDB = async () => {
   //check if connection is already established
   if (mongoose.connection.readyState === 1) {
-    console.log("already connected", mongoose.connection.readyState);
+    // console.log("already connected", mongoose.connection.readyState);
     //already connected
     return;
   }
@@ -23,12 +23,12 @@ export const connectDB = async () => {
 
 export const disconnectDB = () => {
   if (process.env.NODE_ENV === "production") {
-    console.log("disonnect");
+    // console.log("disonnect");
     //disconnect in production mode
     return mongoose.disconnect();
   }
 
-  console.log("not disconnecting");
+  // console.log("not disconnecting");
   return;
 };
 

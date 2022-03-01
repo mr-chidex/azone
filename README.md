@@ -1,3 +1,12 @@
+# AZONE
+
+A full stack Ecommerce Next JS application. Built with Next JS, Mongo DB, SASS, and Redux.
+
+```
+* Authentication and validation
+* Light and Dark Mode
+```
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
