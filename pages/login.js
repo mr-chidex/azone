@@ -18,7 +18,6 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
-  console.log(errors);
   const { isAuth, loading } = useSelector((state) => state.USER);
 
   useEffect(() => {
