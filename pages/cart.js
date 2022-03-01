@@ -47,7 +47,10 @@ const Cart = () => {
             {cart.cartItems <= 0 ? (
               <div>
                 <p>
-                  Cart is empty. <Link href="/">Go Shopping</Link>
+                  Cart is empty.{" "}
+                  <Link href="/">
+                    <a>Go Shopping</a>
+                  </Link>
                 </p>
               </div>
             ) : (
