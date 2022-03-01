@@ -12,14 +12,15 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const router = useRouter();
+  const { redirect } = router.query;
 
   const { isAuth, loading } = useSelector((state) => state.USER);
 
   useEffect(() => {
     if (isAuth) {
-      router.push("/");
+      router.push(redirect || "/");
     }
-  }, [isAuth, router]);
+  }, [isAuth, router, redirect]);
 
   const loginHandler = async (e) => {
     e.preventDefault();

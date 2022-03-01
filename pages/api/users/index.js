@@ -6,7 +6,7 @@ import { connectDB, disconnectDB } from "../../../libs/db";
 const handler = nc({
   onError: (err, _, res) => {
     console.error(err.stack);
-    res.status(500).json({ message: "Something broke!" });
+    res.status(500).json({ message: "Something broke!", error: err.stack });
   },
   onNoMatch: (_, res) => {
     res.status(404).end("Page is not found");

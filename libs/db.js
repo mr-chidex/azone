@@ -29,15 +29,15 @@ export const connectDB = async () => {
 };
 
 export const disconnectDB = () => {
-  if (connection) {
-    //disconnect in production mode
-    if (process.env.NODE_ENV === "production") {
-      console.log("disonnect");
-      connection = false;
-      return mongoose.disconnect();
-    }
-    return;
-  }
+  // if (connection) {
+  //disconnect in production mode
+  // if (process.env.NODE_ENV === "production") {
+  //   console.log("disonnect");
+  //   connection = false;
+  //   return mongoose.disconnect();
+  // }
+  return;
+  // }
 };
 
 export const convertObj = (document) => {

@@ -2,16 +2,18 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { Container } from "react-bootstrap";
+import { useSelector } from "react-redux";
 
 const Shipping = () => {
   const router = useRouter();
-  const auth = true;
+
+  const { isAuth } = useSelector((state) => state.USER);
 
   useEffect(() => {
-    if (!auth) {
-      router.push("/login?ref=shipping");
+    if (!isAuth) {
+      router.push("/login?redirect=shipping");
     }
-  }, [auth, router]);
+  }, [isAuth, router]);
 
   return (
     <>
