@@ -38,4 +38,24 @@
     cursor: pointer;
     border: solid 4px $alt;
   }
+
+  .dropdown {
+    display: flex;
+    text-transform: capitalize;
+
+    button {
+      text-transform: capitalize;
+      background-color: transparent !important;
+      box-shadow: none !important;
+      border: none !important;
+
+      &:active,
+      &:hover,
+      &:focus {
+        background-color: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+      }
+    }
+  }
 }

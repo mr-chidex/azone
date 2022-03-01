@@ -1,6 +1,14 @@
 import React from "react";
 import NextLink from "next/link";
-import { Badge, Container, Form, Nav, Navbar } from "react-bootstrap";
+import {
+  Badge,
+  Container,
+  Dropdown,
+  DropdownButton,
+  Form,
+  Nav,
+  Navbar,
+} from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
@@ -15,7 +23,7 @@ const Header = () => {
   const darkMode = useDarkMode();
   const router = useRouter();
 
-  const { isAuth } = useSelector((state) => state.USER);
+  const { isAuth, userData } = useSelector((state) => state.USER);
   const { cart } = useSelector((state) => state.CART);
 
   const totalQty = cart.cartItems.reduce((acc, curVal) => {
@@ -92,12 +100,15 @@ const Header = () => {
               )}
 
               {isAuth && (
-                <Nav.Link
-                  className={router.pathname === "/" && "inactive"}
-                  onClick={logoutHandler}
+                <DropdownButton
+                  id="dropdown-basic-button"
+                  className="dropdown"
+                  title={userData?.name}
                 >
-                  Logout
-                </Nav.Link>
+                  <Dropdown.Item href="#/action-1">Profile</Dropdown.Item>
+                  <Dropdown.Item href="#/action-2">My Account</Dropdown.Item>
+                  <Dropdown.Item onClick={logoutHandler}>Logout</Dropdown.Item>
+                </DropdownButton>
               )}
             </Nav>
           </Navbar.Collapse>
