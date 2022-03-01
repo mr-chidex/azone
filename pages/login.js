@@ -1,8 +1,9 @@
 import Head from "next/head";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useRouter } from "next/router";
 
 import { loginUser } from "../redux/actions/user";
 
@@ -10,6 +11,15 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
+  const router = useRouter();
+
+  const { isAuth, loading } = useSelector((state) => state.USER);
+
+  useEffect(() => {
+    if (isAuth) {
+      router.push("/");
+    }
+  }, [isAuth, router]);
 
   const loginHandler = async (e) => {
     e.preventDefault();
@@ -49,11 +59,19 @@ const Login = () => {
                 />
               </Form.Group>
 
-              <div className="d-grid gap-2">
-                <Button className="button fw-bold" type="submit">
-                  Login
-                </Button>
-              </div>
+              {loading ? (
+                <div className="d-grid gap-2">
+                  <Button className="btn btn-light  fw-bold">
+                    Login in...
+                  </Button>
+                </div>
+              ) : (
+                <div className="d-grid gap-2">
+                  <Button className="button fw-bold" type="submit">
+                    Login
+                  </Button>
+                </div>
+              )}
             </Form>
 
             <p className="my-2">

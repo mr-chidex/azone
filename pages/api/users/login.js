@@ -28,7 +28,9 @@ handler.post(async (req, res) => {
 
   const { email, password } = value;
 
+  await connectDB();
   const user = await User.findOne({ email });
+  await disconnectDB();
 
   //check if email is valid
   if (!user)

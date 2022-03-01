@@ -28,7 +28,9 @@ handler.post(async (req, res) => {
 
   const { email, password, name } = value;
 
+  await connectDB();
   const user = await User.findOne({ email });
+  await disconnectDB();
 
   //check if email already exist
   if (user)
@@ -36,8 +38,11 @@ handler.post(async (req, res) => {
       .status(400)
       .json({ error: true, message: "user with email already exist" });
 
+  await connectDB();
   const newUser = new User({ email, name, password });
   await newUser.save();
+  await disconnectDB();
+
   res.json({ message: "signup successul" });
 });
 

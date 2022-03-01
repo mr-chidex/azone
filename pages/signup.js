@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
@@ -14,11 +14,13 @@ const Signup = () => {
   const dispatch = useDispatch();
   const router = useRouter();
 
-  const { isAuth } = useSelector((state) => state.USER);
+  const { isAuth, loading } = useSelector((state) => state.USER);
 
-  if (isAuth) {
-    router.push("/");
-  }
+  useEffect(() => {
+    if (isAuth) {
+      router.push("/");
+    }
+  }, [isAuth, router]);
 
   const signupHandler = (e) => {
     e.preventDefault();
@@ -68,11 +70,19 @@ const Signup = () => {
                 />
               </Form.Group>
 
-              <div className="d-grid gap-2">
-                <Button className="button fw-bold" type="submit">
-                  Sign Up
-                </Button>
-              </div>
+              {loading ? (
+                <div className="d-grid gap-2">
+                  <Button className="btn btn-light  fw-bold">
+                    Signing up...
+                  </Button>
+                </div>
+              ) : (
+                <div className="d-grid gap-2">
+                  <Button className="button fw-bold" type="submit">
+                    Sign Up
+                  </Button>
+                </div>
+              )}
             </Form>
 
             <p className="my-2">
