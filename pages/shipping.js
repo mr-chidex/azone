@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import { Button, Container, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useSelector, useDispatch } from "react-redux";
+import ProgressStep from "../components/ProgressStep";
 import { saveShippingAddress } from "../redux/actions/cart";
 
 const Shipping = () => {
@@ -34,6 +35,8 @@ const Shipping = () => {
 
   const saveAddressHandler = (data) => {
     dispatch(saveShippingAddress(data));
+
+    router.push("/payment");
   };
 
   return (
@@ -44,6 +47,8 @@ const Shipping = () => {
 
       <Container>
         <main className="default-margin shipping">
+          <ProgressStep activeStep={1} />
+
           <section className="form-container">
             <h1>Shipping Address</h1>
             <Form onSubmit={handleSubmit(saveAddressHandler)}>
