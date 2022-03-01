@@ -2942,6 +2942,11 @@ react-dom@17.0.2:
     object-assign "^4.1.1"
     scheduler "^0.20.2"
 
+react-flutterwave@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/react-flutterwave/-/react-flutterwave-1.0.4.tgz#e6367defeb207d7d6c0e1cff3b4b3eb4dd27f4bd"
+  integrity sha512-AQVL9eDwlmRYL9D20BUIgNqnSfCC/h1OrbpWF+3WX4sS9tjDtj1sJlVoAX0v9Lzt+sKENdxpcEQ7lq7wcsdoKQ==
+
 react-form-stepper@^1.4.3:
   version "1.4.3"
   resolved "https://registry.yarnpkg.com/react-form-stepper/-/react-form-stepper-1.4.3.tgz#1d04234e84138230ae2149941e80eb4b6c08b5ff"
@@ -2987,6 +2992,11 @@ react-lifecycles-compat@^3.0.4:
   version "3.0.4"
   resolved "https://registry.npmjs.org/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
+
+react-paystack@^3.0.5:
+  version "3.0.5"
+  resolved "https://registry.yarnpkg.com/react-paystack/-/react-paystack-3.0.5.tgz#e257c6871bc525978f7a4c29e5a016c0f71157e4"
+  integrity sha512-4cswo2iMToFs0eVmLRGlYRhlAFIs0MrfIOEO/RO20Y58ryre+DHd2tHqyLRWmlX3SOs5eYr/38z/L1quk6O6ZA==
 
 react-redux@^7.2.6:
   version "7.2.6"

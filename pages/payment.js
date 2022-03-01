@@ -2,15 +2,16 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
-import { useForm } from "react-hook-form";
 import { useSelector, useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 
 import ProgressStep from "../components/ProgressStep";
+import { savePaymentMthod } from "../redux/actions/cart";
 
 const Payment = () => {
   const router = useRouter();
   const dispatch = useDispatch();
-  const { isAuth, userData } = useSelector((state) => state.USER);
+  const { isAuth } = useSelector((state) => state.USER);
   const { shippingAddress } = useSelector((state) => state.CART);
   const [payMethod, setPayMethod] = useState("paystack");
 
@@ -20,9 +21,21 @@ const Payment = () => {
     }
   }, [isAuth, router]);
 
+  useEffect(() => {
+    if (!shippingAddress?.address) {
+      router.push("/login?redirect=shipping");
+    }
+  }, [router, shippingAddress]);
+
   const paymentHandler = (e) => {
     e.preventDefault();
-    console.log(payMethod);
+
+    if (!payMethod) {
+      return toast.warning("select a payment method");
+    }
+    dispatch(savePaymentMthod(payMethod));
+
+    router.push("/place-order");
   };
 
   return (

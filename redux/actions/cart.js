@@ -25,7 +25,7 @@ export const saveShippingAddress = (address) => (dispatch) => {
   dispatch({ type: SAVE_SHIPPING_ADDRESS, payload: address });
 };
 
-export const paymentMthodAction = (method) => (dispatch) => {
+export const savePaymentMthod = (method) => (dispatch) => {
   Cookies.set("paymentMethod", JSON.stringify(method));
   dispatch({ type: SAVE_PAYMENT_METHOD, payload: method });
 };
