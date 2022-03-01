@@ -1,18 +1,21 @@
 import Head from "next/head";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Button, Container, Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 
 import { signupUser } from "../redux/actions/user";
+import { useForm } from "react-hook-form";
 
 const Signup = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
   const dispatch = useDispatch();
   const router = useRouter();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   const { isAuth, loading } = useSelector((state) => state.USER);
 
@@ -22,9 +25,8 @@ const Signup = () => {
     }
   }, [isAuth, router]);
 
-  const signupHandler = (e) => {
-    e.preventDefault();
-    dispatch(signupUser({ name, email, password }));
+  const signupHandler = (data) => {
+    dispatch(signupUser(data));
   };
 
   return (
@@ -36,17 +38,20 @@ const Signup = () => {
       <Container>
         <main className="default-margin">
           <section className="form-container">
-            <Form onSubmit={signupHandler}>
+            <Form onSubmit={handleSubmit(signupHandler)}>
               <Form.Group className="mb-3" controlId="name">
                 <Form.Label>Full Name</Form.Label>
                 <Form.Control
                   size="lg"
                   type="text"
                   placeholder="John doe"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
+                  {...register("name", {
+                    required: "full name is required",
+                    minLength: { value: 4, message: " min of 4 characters" },
+                  })}
                 />
               </Form.Group>
+              {errors.name && <p className="error">* {errors.name?.message}</p>}
 
               <Form.Group className="mb-3" controlId="email">
                 <Form.Label>Email address</Form.Label>
@@ -54,21 +59,30 @@ const Signup = () => {
                   size="lg"
                   type="email"
                   placeholder="name@example.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  {...register("email", {
+                    required: "email is required",
+                  })}
                 />
               </Form.Group>
+              {errors.email && (
+                <p className="error">* {errors.email?.message}</p>
+              )}
 
               <Form.Group className="mb-3" controlId="pass">
                 <Form.Label>Password</Form.Label>
                 <Form.Control
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
                   size="lg"
                   controlId="pass"
                   type="password"
+                  {...register("password", {
+                    required: "password is required",
+                    minLength: { value: 5, message: " min of 5 characters" },
+                  })}
                 />
               </Form.Group>
+              {errors.password && (
+                <p className="error">* {errors.password?.message}</p>
+              )}
 
               {loading ? (
                 <div className="d-grid gap-2">
