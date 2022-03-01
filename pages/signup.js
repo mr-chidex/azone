@@ -2,7 +2,8 @@ import Head from "next/head";
 import Link from "next/link";
 import React, { useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useRouter } from "next/router";
 
 import { signupUser } from "../redux/actions/user";
 
@@ -11,6 +12,13 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const dispatch = useDispatch();
+  const router = useRouter();
+
+  const { isAuth } = useSelector((state) => state.USER);
+
+  if (isAuth) {
+    router.push("/");
+  }
 
   const signupHandler = (e) => {
     e.preventDefault();

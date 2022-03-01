@@ -8,12 +8,14 @@ import { useRouter } from "next/router";
 import { changeTheme } from "../redux/actions/UI";
 import { useDarkMode } from "../utils/UI";
 import colors from "../utils/colors";
+import { logOutUser } from "../redux/actions/user";
 
 const Header = () => {
   const dispatch = useDispatch();
   const darkMode = useDarkMode();
   const router = useRouter();
 
+  const { isAuth } = useSelector((state) => state.USER);
   const { cart } = useSelector((state) => state.CART);
 
   const totalQty = cart.cartItems.reduce((acc, curVal) => {
@@ -24,6 +26,10 @@ const Header = () => {
 
     const newMode = !darkMode;
     Cookies.set("darkMode", newMode ? "ON" : "OFF");
+  };
+
+  const logoutHandler = () => {
+    dispatch(logOutUser());
   };
 
   const mode = {
@@ -74,14 +80,25 @@ const Header = () => {
                 </Nav.Link>
               </NextLink>
 
-              <NextLink href="/login">
+              {!isAuth && (
+                <NextLink href="/login">
+                  <Nav.Link
+                    className={router.pathname === "/" && "inactive"}
+                    href="/login"
+                  >
+                    Login
+                  </Nav.Link>
+                </NextLink>
+              )}
+
+              {isAuth && (
                 <Nav.Link
                   className={router.pathname === "/" && "inactive"}
-                  href="/login"
+                  onClick={logoutHandler}
                 >
-                  Login
+                  Logout
                 </Nav.Link>
-              </NextLink>
+              )}
             </Nav>
           </Navbar.Collapse>
         </Container>
