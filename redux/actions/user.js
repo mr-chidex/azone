@@ -9,6 +9,9 @@ import {
   LOGIN_SUCCESS,
   LOGOUT_USER,
   SET_USER,
+  SIGNUP_FAILED,
+  SIGNUP_REQUEST,
+  SIGNUP_SUCCESS,
   USER_TOKEN,
 } from "../constants/user";
 
@@ -61,3 +64,27 @@ export const setAuthorizationHeader = (token) => {
     delete axios.defaults.headers.common["Authorization"];
   }
 };
+
+export const signupUser =
+  ({ email, password, name }) =>
+  async (dispatch) => {
+    try {
+      dispatch({ type: SIGNUP_REQUEST });
+
+      await axios.post("/api/users/signup", {
+        email,
+        password,
+        name,
+      });
+
+      toast.success("Signup successful. Proceed to login");
+
+      dispatch({ type: SIGNUP_SUCCESS });
+    } catch (error) {
+      toast.error(error?.response?.data?.message || error?.message);
+      dispatch({
+        type: SIGNUP_FAILED,
+        payload: error?.response?.data?.message || error?.message,
+      });
+    }
+  };

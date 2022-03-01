@@ -4,6 +4,9 @@ import {
   LOGIN_SUCCESS,
   LOGOUT_USER,
   SET_USER,
+  SIGNUP_REQUEST,
+  SIGNUP_SUCCESS,
+  SIGNUP_FAILED,
 } from "../constants/user";
 
 const initailState = {
@@ -40,6 +43,21 @@ export const userReducer = (state = initailState, { type, payload }) => {
         ...state,
         isAuth: true,
         userData: payload,
+      };
+    case SIGNUP_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+    case SIGNUP_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+      };
+    case SIGNUP_FAILED:
+      return {
+        ...state,
+        loading: false,
       };
     default:
       return { ...state };

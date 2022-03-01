@@ -2,14 +2,19 @@ import Head from "next/head";
 import Link from "next/link";
 import React, { useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+
+import { signupUser } from "../redux/actions/user";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
+  const dispatch = useDispatch();
 
   const signupHandler = (e) => {
     e.preventDefault();
+    dispatch(signupUser({ name, email, password }));
   };
 
   return (

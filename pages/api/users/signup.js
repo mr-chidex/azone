@@ -1,7 +1,7 @@
 import nc from "next-connect";
 import bcryptjs from "bcryptjs";
 
-import { User, ValidateLogin, getToken } from "../../../models/users";
+import { User, ValidateSignup, getToken } from "../../../models/users";
 import { connectDB, disconnectDB } from "../../../libs/db";
 
 const handler = nc({
@@ -15,10 +15,10 @@ const handler = nc({
 });
 
 /**
- * @desc login user
+ * @desc signup user
  */
 handler.post(async (req, res) => {
-  const { error, value } = ValidateLogin(req.body);
+  const { error, value } = ValidateSignup(req.body);
 
   if (error)
     return res.status(422).json({
@@ -26,27 +26,19 @@ handler.post(async (req, res) => {
       message: error.details[0].message,
     });
 
-  const { email, password } = value;
+  const { email, password, name } = value;
 
   const user = await User.findOne({ email });
 
-  //check if email is valid
-  if (!user)
+  //check if email already exist
+  if (user)
     return res
       .status(400)
-      .json({ error: true, message: "email or password is incorrect" });
+      .json({ error: true, message: "user with email already exist" });
 
-  const isValid = await bcryptjs.compare(password, user.password);
-
-  // check if password is valid
-  if (!isValid)
-    return res
-      .status(400)
-      .json({ error: true, message: "email or password is incorrect" });
-
-  const token = getToken(user);
-
-  res.json({ message: "success", token });
+  const newUser = new User({ email, name, password });
+  await newUser.save();
+  res.json({ message: "signup successul" });
 });
 
 export default handler;

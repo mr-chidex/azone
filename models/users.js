@@ -58,13 +58,22 @@ const generateToken = (user) => {
   return jwtToken;
 };
 
-const validate = (user) => {
+const validateLogin = (user) => {
   return Joi.object({
     email: Joi.string().trim().required().email().normalize(),
     password: Joi.string().min(4).trim().required(),
   }).validate(user);
 };
 
+const validateSignup = (user) => {
+  return Joi.object({
+    email: Joi.string().trim().required().email().normalize(),
+    password: Joi.string().min(4).trim().required(),
+    name: Joi.string().min(3).trim().required(),
+  }).validate(user);
+};
+
 export const User = mongoose.models.User || mongoose.model("User", userSchema);
 export const getToken = generateToken;
-export const Validate = validate;
+export const ValidateLogin = validateLogin;
+export const ValidateSignup = validateSignup;
