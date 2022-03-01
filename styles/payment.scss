@@ -1,0 +1,31 @@
+.payment {
+  section {
+    width: 100%;
+    margin: 0 auto;
+
+    @media (min-width: 1000px) {
+      width: 60vw;
+    }
+
+    @media (min-width: 1500px) {
+      width: 40vw;
+    }
+
+    h1 {
+      font-weight: 400;
+      font-size: 1.6rem;
+    }
+
+    form {
+      margin: 1.5rem 0;
+
+      div {
+        margin: 1rem 0;
+        label {
+          margin-left: 0.5rem;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

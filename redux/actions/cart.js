@@ -4,6 +4,7 @@ import {
   ADD_TO_CART,
   QTY_CHANGE,
   REMOVE_FROM_CART,
+  SAVE_PAYMENT_METHOD,
   SAVE_SHIPPING_ADDRESS,
 } from "../constants/cart";
 
@@ -22,4 +23,9 @@ export const removeFromCart = (itemId) => async (dispatch) => {
 export const saveShippingAddress = (address) => (dispatch) => {
   Cookies.set("shippingAddress", JSON.stringify(address));
   dispatch({ type: SAVE_SHIPPING_ADDRESS, payload: address });
+};
+
+export const paymentMthodAction = (method) => (dispatch) => {
+  Cookies.set("paymentMethod", JSON.stringify(method));
+  dispatch({ type: SAVE_PAYMENT_METHOD, payload: method });
 };

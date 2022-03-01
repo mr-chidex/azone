@@ -3,6 +3,7 @@ import {
   ADD_TO_CART,
   QTY_CHANGE,
   REMOVE_FROM_CART,
+  SAVE_PAYMENT_METHOD,
   SAVE_SHIPPING_ADDRESS,
 } from "../constants/cart";
 
@@ -17,6 +18,9 @@ const initailState = {
       : [],
   },
   shippingAddress: { ...address },
+  paymentMethod: Cookies.get("paymentMethod")
+    ? JSON.parse(Cookies.get("paymentMethod"))
+    : "paystack",
 };
 
 export const CartReducer = (state = initailState, { type, payload }) => {
@@ -62,6 +66,9 @@ export const CartReducer = (state = initailState, { type, payload }) => {
     }
     case SAVE_SHIPPING_ADDRESS: {
       return { ...state, shippingAddress: payload };
+    }
+    case SAVE_PAYMENT_METHOD: {
+      return { ...state, paymentMethod: payload };
     }
     default:
       return state;

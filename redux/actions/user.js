@@ -53,6 +53,7 @@ export function setUser(data) {
 export function logOutUser() {
   return (dispatch) => {
     Cookies.remove(USER_TOKEN);
+    Cookies.remove(USER);
 
     delete axios.defaults.headers.common["Authorization"];
     dispatch({ type: LOGOUT_USER });
