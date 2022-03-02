@@ -39,7 +39,8 @@ export const userReducer = (state = initailState, { type, payload }) => {
       };
     case LOGOUT_USER:
       return {
-        ...initailState,
+        userData: {},
+        isAuth: false,
       };
     case SET_USER:
       return {

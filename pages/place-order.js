@@ -9,11 +9,12 @@ import { usePaystackPayment } from "react-paystack";
 import { useSelector, useDispatch } from "react-redux";
 import ProgressStep from "../components/ProgressStep";
 import { toast } from "react-toastify";
+import { placeOrderAction } from "../redux/actions/cart";
 
 const PlaceOrder = () => {
   const router = useRouter();
-  // const dispatch = useDispatch();
-  const { isAuth, userData } = useSelector((state) => state.USER);
+  const dispatch = useDispatch();
+  const { isAuth } = useSelector((state) => state.USER);
   const { shippingAddress, paymentMethod, cart } = useSelector(
     (state) => state.CART
   );
@@ -43,71 +44,17 @@ const PlaceOrder = () => {
     }
   }, [router, paymentMethod]);
 
-  const paystackConfig = {
-    reference: new Date().getTime().toString(),
-    email: userData?.email,
-    amount: totalPrice * 100,
-    publicKey: process.env.NEXT_PUBLIC_PAYSTACK_KEY,
-  };
-
-  // you can call this function anything
-  const onSuccess = (reference) => {
-    // Implementation for whatever you want to do with reference and after success call.
-    // console.log(reference);
-    toast.success("message payment successful");
-  };
-
-  // you can call this function anything
-  const onClose = () => {
-    // implementation for  whatever you want to do when the Paystack dialog closed.
-    // console.log("closed");
-    toast.error("payment canceled");
-  };
-
-  const initializePayment = usePaystackPayment(paystackConfig);
   const PlaceOrderHandler = () => {
-    if (paymentMethod === "paystack") {
-      initializePayment(onSuccess, onClose);
-    }
-
-    if (paymentMethod === "flutterwave") {
-      handleFlutterPayment({
-        callback: (response) => {
-          // console.log(response);
-          toast.success("message payment successful");
-        },
-        onClose: () => {
-          toast.error("payment canceled");
-          router.push("/place-order");
-        },
-      });
-    }
-
-    if (paymentMethod === "cash") {
-      toast.success(
-        "Thanks for purchasing. Payment details will be forwarded to your email"
-      );
-    }
+    const orderInfo = {
+      orderItems: cart?.cartItems,
+      shippingAddress,
+      paymentMethod,
+      taxPrice: tax,
+      totalPrice,
+      shippingPrice: shippingCost,
+    };
+    dispatch(placeOrderAction(orderInfo));
   };
-
-  const flutterConfig = {
-    public_key: process.env.NEXT_PUBLIC_FLUTTER_KEY,
-    tx_ref: Date.now(),
-    amount: totalPrice + tax + shippingCost,
-    currency: "NGN",
-    payment_options: "card,mobilemoney,ussd",
-    customer: {
-      email: userData?.email,
-      name: userData?.name,
-    },
-    customizations: {
-      title: "My store",
-      description: "Payment for items in cart",
-      logo: "https://avatars.githubusercontent.com/u/61011030?v=4",
-    },
-  };
-
-  const handleFlutterPayment = useFlutterwave(flutterConfig);
 
   return (
     <>

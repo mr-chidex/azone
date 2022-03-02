@@ -1,9 +1,8 @@
-import { User } from "../models/users";
-
 const JWT = require("jsonwebtoken");
 
-export default isAuth = async (req, res, next) => {
+const isAuth = async (req, res, next) => {
   try {
+    console.log("auth", req.headers);
     if (!req.headers.authorization)
       return res.status(400).json({ message: "No authorization header" });
 
@@ -18,9 +17,6 @@ export default isAuth = async (req, res, next) => {
       if (err) {
         return res.status(401).json({ message: "Unauthorized access" });
       }
-
-      console.log("decode - ", decode);
-      // const user = await User.findById(decodeToken.payload);
       req.user = decode;
 
       next();
@@ -29,3 +25,5 @@ export default isAuth = async (req, res, next) => {
     next(err);
   }
 };
+
+export default isAuth;

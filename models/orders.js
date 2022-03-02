@@ -9,20 +9,10 @@ const orderSchema = new Schema(
       ref: "User",
       required: true,
     },
-    orderItems: [
-      {
-        name: { type: String, required: true },
-        quantity: { type: Number, required: true },
-        image: { type: String, required: true },
-        Price: { type: Number, required: true },
-      },
-    ],
-    shippingAdress: {
-      fullName: { type: String, required: true },
-      address1: { type: String, required: true },
-      city: { type: String, required: true },
-      pcode: { type: String, required: true },
-      country: { type: String, required: true },
+    orderItems: { type: Array, required: true },
+    shippingAddress: {
+      type: Object,
+      required: true,
     },
     shippingPrice: { type: Number, required: true },
     paymentMethod: {
@@ -39,16 +29,15 @@ const orderSchema = new Schema(
   { timestamps: true }
 );
 
-const validate = (product) => {
+const validate = (order) => {
   return Joi.object({
-    user: Joi.string().min(3).trim().required(),
     orderItems: Joi.array().required(),
-    shippingAdress: Joi.object().required(),
-    shippingPrice: Joi.number().trim().required(),
+    shippingAddress: Joi.object().required(),
+    shippingPrice: Joi.number().required(),
     paymentMethod: Joi.string().trim().required(),
-    taxPrice: Joi.number().trim().required(),
-    totalPrice: Joi.number().trim().required(),
-  }).validate(product);
+    taxPrice: Joi.number().required(),
+    totalPrice: Joi.number().required(),
+  }).validate(order);
 };
 
 export const Order =

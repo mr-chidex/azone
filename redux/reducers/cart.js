@@ -1,6 +1,7 @@
 import Cookies from "js-cookie";
 import {
   ADD_TO_CART,
+  PLACE_ORDER_SUCCESS,
   QTY_CHANGE,
   REMOVE_FROM_CART,
   SAVE_PAYMENT_METHOD,
@@ -69,6 +70,9 @@ export const CartReducer = (state = initailState, { type, payload }) => {
     }
     case SAVE_PAYMENT_METHOD: {
       return { ...state, paymentMethod: payload };
+    }
+    case PLACE_ORDER_SUCCESS: {
+      return { ...state, cart: { ...state.cart, cartItems: [] } };
     }
     default:
       return state;

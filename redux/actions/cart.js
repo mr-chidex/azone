@@ -1,12 +1,15 @@
 import Cookies from "js-cookie";
+import axios from "axios";
 
 import {
   ADD_TO_CART,
+  PLACE_ORDER_SUCCESS,
   QTY_CHANGE,
   REMOVE_FROM_CART,
   SAVE_PAYMENT_METHOD,
   SAVE_SHIPPING_ADDRESS,
 } from "../constants/cart";
+import { toast } from "react-toastify";
 
 export const addToCartAction = (product) => async (dispatch) => {
   dispatch({ type: ADD_TO_CART, payload: { ...product, qty: 1 } });
@@ -28,4 +31,14 @@ export const saveShippingAddress = (address) => (dispatch) => {
 export const savePaymentMthod = (method) => (dispatch) => {
   Cookies.set("paymentMethod", JSON.stringify(method));
   dispatch({ type: SAVE_PAYMENT_METHOD, payload: method });
+};
+
+export const placeOrderAction = (order) => async (dispatch) => {
+  try {
+    const { data } = await axios.post(`/api/orders`, order);
+
+    dispatch({ type: PLACE_ORDER_SUCCESS, payload: data?.order });
+  } catch (error) {
+    toast.error("Failed to place order. Please try again");
+  }
 };

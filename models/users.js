@@ -49,6 +49,7 @@ const generateToken = (user) => {
       iss: "@mr-chidex",
       iat: new Date().getTime(),
       exp: Math.floor(Date.now() / 1000) + 44 * 60 * 60,
+      _id: user._id,
       name: user.name,
       email: user.email,
       isAdmin: user.isAdmin,

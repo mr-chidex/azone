@@ -7,7 +7,7 @@ import isAuth from "../../../utils/isAuth";
 
 const handler = nc({
   onError: (err, _, res) => {
-    console.error(err.stack);
+    console.error(err.message);
     res.status(500).json({ message: "Something broke!" });
   },
   onNoMatch: (_, res) => {
@@ -36,8 +36,6 @@ handler.get(async (req, res) => {
 handler.post(async (req, res) => {
   const { error, value } = Validate(req.body);
 
-  console.log(req.user);
-
   if (error)
     return res.status(422).json({
       error: true,
@@ -45,9 +43,8 @@ handler.post(async (req, res) => {
     });
 
   const {
-    user,
     orderItems,
-    shippingAdress,
+    shippingAddress,
     shippingPrice,
     paymentMethod,
     taxPrice,
@@ -58,7 +55,7 @@ handler.post(async (req, res) => {
   const order = new Order({
     user: req.user?._id,
     orderItems,
-    shippingAdress,
+    shippingAddress,
     shippingPrice,
     paymentMethod,
     taxPrice,
