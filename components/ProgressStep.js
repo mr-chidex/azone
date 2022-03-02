@@ -1,5 +1,4 @@
-import React from "react";
-import { Step, Stepper } from "react-form-stepper";
+import React from "react";import { Step, Stepper } from "react-form-stepper";
 
 const ProgressStep = ({ activeStep = 0 }) => {
   return (
