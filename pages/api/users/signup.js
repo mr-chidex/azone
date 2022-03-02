@@ -43,7 +43,7 @@ handler.post(async (req, res) => {
   await newUser.save();
   await disconnectDB();
 
-  res.json({ message: "signup successul" });
+  res.status(201).json({ message: "signup successul" });
 });
 
 export default handler;

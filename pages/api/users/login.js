@@ -30,7 +30,7 @@ handler.post(async (req, res) => {
 
   await connectDB();
   const user = await User.findOne({ email });
-  await disconnectDB();
+  disconnectDB();
 
   //check if email is valid
   if (!user)
