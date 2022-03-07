@@ -33,11 +33,7 @@ export default function Home({ products }) {
         <Row>
           {products.map((prod, ind) => (
             <Col key={ind + 1}>
-              <Card
-                style={{ width: "18rem" }}
-                data-aos="fade-up"
-                className="product-card"
-              >
+              <Card data-aos="fade-up" className="product-card">
                 <Link href={`/products/${prod.slug}`}>
                   <a title={prod.name}>
                     <Card.Img variant="top" src={prod.image} />
@@ -74,7 +70,7 @@ export const getServerSideProps = async () => {
   await connectDB();
   const products = await Product.find().lean();
 
-  await disconnectDB();
+  // disconnectDB();
   return {
     props: {
       products: products.map(convertObj),

@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
+import axios from "axios";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { useFlutterwave } from "react-flutterwave";
@@ -8,9 +9,24 @@ import { Button, Card, Col, Container, Row, Table } from "react-bootstrap";
 import { usePaystackPayment } from "react-paystack";
 import { useSelector, useDispatch } from "react-redux";
 // import ProgressStep from "../components/ProgressStep";
+import { Order as PayOrder } from "../../models/orders";
+
 import { toast } from "react-toastify";
+import { connectDB, convertObj, disconnectDB } from "../../libs/db";
 
 const Order = ({ data }) => {
+  const router = useRouter();
+  const dispatch = useDispatch();
+  const { isAuth } = useSelector((state) => state.USER);
+
+  useEffect(() => {
+    if (!isAuth) {
+      router.push("/login");
+    }
+  }, [isAuth, router]);
+
+  console.log(data);
+
   // const paystackConfig = {
   //   reference: new Date().getTime().toString(),
   //   email: userData?.email,
@@ -93,9 +109,14 @@ const Order = ({ data }) => {
 export const getServerSideProps = async (context) => {
   const { orderId } = context.params;
 
+  await connectDB();
+  const order = await PayOrder.findById(orderId).lean();
+
+  // disconnectDB();
+
   return {
     props: {
-      data: {},
+      order: convertObj(order),
     },
   };
 };

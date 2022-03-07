@@ -2,7 +2,6 @@ const JWT = require("jsonwebtoken");
 
 const isAuth = async (req, res, next) => {
   try {
-    console.log("auth", req.headers);
     if (!req.headers.authorization)
       return res.status(400).json({ message: "No authorization header" });
 

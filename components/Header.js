@@ -40,10 +40,6 @@ const Header = () => {
     dispatch(logOutUser());
   };
 
-  const mode = {
-    background: !darkMode ? colors.dark : colors.light,
-  };
-
   return (
     <>
       <Navbar

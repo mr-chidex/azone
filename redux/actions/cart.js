@@ -33,12 +33,6 @@ export const savePaymentMthod = (method) => (dispatch) => {
   dispatch({ type: SAVE_PAYMENT_METHOD, payload: method });
 };
 
-export const placeOrderAction = (order) => async (dispatch) => {
-  try {
-    const { data } = await axios.post(`/api/orders`, order);
-
-    dispatch({ type: PLACE_ORDER_SUCCESS, payload: data?.order });
-  } catch (error) {
-    toast.error("Failed to place order. Please try again");
-  }
+export const placeOrderAction = () => async (dispatch) => {
+  dispatch({ type: PLACE_ORDER_SUCCESS });
 };

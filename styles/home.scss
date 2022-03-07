@@ -1,6 +1,17 @@
 .Home {
+  h1 {
+    text-shadow: 5px 8px 12px $black;
+    color: $white;
+  }
   .product-card {
     margin-bottom: 2rem;
+    width: 85vw;
+    // margin: 1rem auto;
+
+    @media (min-width: 590px) {
+      width: 15rem;
+      // margin: none;
+    }
 
     img {
       height: 18rem;

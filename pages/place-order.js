@@ -2,10 +2,9 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import axios from "axios";
 import React, { useEffect } from "react";
-import { useFlutterwave } from "react-flutterwave";
 import { Button, Card, Col, Container, Row, Table } from "react-bootstrap";
-import { usePaystackPayment } from "react-paystack";
 import { useSelector, useDispatch } from "react-redux";
 import ProgressStep from "../components/ProgressStep";
 import { toast } from "react-toastify";
@@ -42,9 +41,13 @@ const PlaceOrder = () => {
     if (!paymentMethod) {
       router.push("/login?redirect=payment");
     }
-  }, [router, paymentMethod]);
 
-  const PlaceOrderHandler = () => {
+    if (cart.cartItems?.length === 0) {
+      router.push("/cart");
+    }
+  }, [router, paymentMethod, cart]);
+
+  const PlaceOrderHandler = async () => {
     const orderInfo = {
       orderItems: cart?.cartItems,
       shippingAddress,
@@ -53,7 +56,15 @@ const PlaceOrder = () => {
       totalPrice,
       shippingPrice: shippingCost,
     };
-    dispatch(placeOrderAction(orderInfo));
+
+    try {
+      const { data } = await axios.post(`/api/orders`, orderInfo);
+
+      dispatch(placeOrderAction());
+      router.push(`/orders/${data?.order?._id}`);
+    } catch (error) {
+      toast.error("Failed to place order. Please try again");
+    }
   };
 
   return (

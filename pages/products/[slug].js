@@ -109,7 +109,7 @@ export const getServerSideProps = async (context) => {
   await connectDB();
   const product = await Prod.findOne({ slug }).lean();
 
-  await disconnectDB();
+  disconnectDB();
   return {
     props: {
       product: convertObj(product),

@@ -12,8 +12,8 @@
   }
 
   @mixin Logo {
-    color: lighten($primary, 25);
-    text-shadow: 2px 3px 5px #fff;
+    color: lighten($black, 25);
+    text-shadow: 2px 1px 12px $white;
   }
 
   .logo {

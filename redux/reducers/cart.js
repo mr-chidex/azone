@@ -72,6 +72,7 @@ export const CartReducer = (state = initailState, { type, payload }) => {
       return { ...state, paymentMethod: payload };
     }
     case PLACE_ORDER_SUCCESS: {
+      Cookies.remove("cartItems");
       return { ...state, cart: { ...state.cart, cartItems: [] } };
     }
     default:

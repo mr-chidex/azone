@@ -44,6 +44,7 @@ export const convertObj = (document) => {
   document._id = document._id.toString();
   document.createdAt = document.createdAt.toString();
   document.updatedAt = document.updatedAt.toString();
+  document.user ? (document.user = document.user?.toString()) : null;
 
   return document;
 };
