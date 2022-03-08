@@ -36,3 +36,12 @@ export const savePaymentMthod = (method) => (dispatch) => {
 export const placeOrderAction = () => async (dispatch) => {
   dispatch({ type: PLACE_ORDER_SUCCESS });
 };
+
+export const makePayment = (orderId) => async (dispatch) => {
+  try {
+    const { data } = await axios.get(`/api/orders/${orderId}`);
+    console.log(data);
+  } catch (err) {
+    toast.error("support working to fix error");
+  }
+};

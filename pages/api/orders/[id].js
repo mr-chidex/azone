@@ -30,8 +30,29 @@ handler.get(async (req, res) => {
   await connectDB();
   const order = await Order.findById(id);
 
-  disconnectDB();
+  // disconnectDB();
   res.json({ order });
+});
+
+/**
+ * @desc payment successful
+ */
+handler.put(async (req, res) => {
+  const { id } = req.query;
+
+  if (!mongoose.isValidObjectId(id))
+    return res.status(400).json({ message: "Invalid order id" });
+
+  await connectDB();
+  const order = await Order.findById(id);
+
+  order.isPaid = true;
+  order.paidAt = new Date().toDateString();
+
+  await order.save();
+
+  // disconnectDB();
+  res.json({ message: "payment successful", order });
 });
 
 export default handler;
