@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
 import React, { useEffect } from "react";
-import { Button, Container, Form } from "react-bootstrap";
+import { Alert, Button, Container, Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
@@ -39,6 +39,15 @@ const Login = () => {
       <Container>
         <main className="default-margin">
           <section className="form-container">
+            <Alert variant="info">
+              <Alert.Heading>Test User</Alert.Heading>
+              <hr />
+              <div>
+                <span className="fw-bold">Email: johndoe@email.com</span>
+                <span className="mx-4 fw-bold">Password: doe123</span>
+              </div>
+            </Alert>
+
             <Form onSubmit={handleSubmit(loginHandler)}>
               <Form.Group className="mb-3" controlId="email">
                 <Form.Label>Email address</Form.Label>
