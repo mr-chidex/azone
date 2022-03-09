@@ -4,12 +4,12 @@ let connection = false;
 export const connectDB = async () => {
   //check if connection is already established
   if (connection) {
-    console.log("already connected");
+    // console.log("already connected");
     return;
   }
 
   if (mongoose.connection.readyState === 1) {
-    console.log("already connected", mongoose.connection.readyState);
+    // console.log("already connected", mongoose.connection.readyState);
     //already connected
     return;
   }
