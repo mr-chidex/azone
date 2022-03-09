@@ -1,19 +1,17 @@
 import Head from "next/head";
-import Link from "next/link";
-import React, { useEffect } from "react";
-import { Button, Col, Container, Form, Row, Table } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { Button, Container, Table } from "react-bootstrap";
+import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
+import axios from "axios";
 
-import { signupUser } from "../redux/actions/user";
-import { useForm } from "react-hook-form";
-import Image from "next/image";
-
-import { connectDB, convertObj, disconnectDB } from "../libs/db";
+import { connectDB, convertObj } from "../libs/db";
 import { Order } from "../models/orders";
+import { toast } from "react-toastify";
 
 const OrderHistory = ({ orders }) => {
   const router = useRouter();
+  const [allOrders, setAllOrders] = useState(orders);
 
   const { isAuth } = useSelector((state) => state.USER);
 
@@ -22,6 +20,17 @@ const OrderHistory = ({ orders }) => {
       router.push("/");
     }
   }, [isAuth, router]);
+
+  const deleteHandler = async (id) => {
+    try {
+      await axios.delete(`/api/orders/${id}`);
+      setAllOrders((prev) =>
+        prev.filter((order) => order._id?.toString() !== id.toString())
+      );
+    } catch (err) {
+      toast.error("error deleting order");
+    }
+  };
 
   return (
     <>
@@ -49,7 +58,7 @@ const OrderHistory = ({ orders }) => {
                   </tr>
                 </thead>
                 <tbody>
-                  {orders?.map((order, ind) => (
+                  {allOrders?.map((order, ind) => (
                     <tr key={order._id}>
                       <td>{ind + 1}</td>
                       <td>{order?.createdAt}</td>
@@ -74,6 +83,16 @@ const OrderHistory = ({ orders }) => {
                         >
                           ...
                         </Button>
+
+                        {order?.isPaid && (
+                          <Button
+                            className="mx-2"
+                            onClick={() => deleteHandler(order._id)}
+                            variant="danger"
+                          >
+                            &#128473;
+                          </Button>
+                        )}
                       </td>
                     </tr>
                   ))}

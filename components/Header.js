@@ -100,7 +100,7 @@ const Header = () => {
                   className="dropdown"
                   title={userData?.name}
                 >
-                  <Dropdown.Item href="#/action-1">Profile</Dropdown.Item>
+                  {/* <Dropdown.Item href="#/action-1">Profile</Dropdown.Item> */}
                   <Dropdown.Item>
                     <NextLink href="/order-history">
                       <a>Order History</a>

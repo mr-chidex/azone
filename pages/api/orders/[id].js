@@ -57,4 +57,20 @@ handler.put(async (req, res) => {
   res.json({ message: "payment successful", order });
 });
 
+/**
+ * @desc delete order
+ */
+handler.delete(async (req, res) => {
+  const { id } = req.query;
+
+  if (!mongoose.isValidObjectId(id))
+    return res.status(400).json({ message: "Invalid order id" });
+
+  await connectDB();
+  await Order.findByIdAndDelete(id);
+
+  // disconnectDB();
+  res.json({ message: "delete successful" });
+});
+
 export default handler;
