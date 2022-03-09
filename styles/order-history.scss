@@ -1,0 +1,18 @@
+.order-history {
+  margin-bottom: 4rem;
+
+  h1 {
+    margin: 1rem 0;
+  }
+  .table {
+    background-color: $white;
+
+    td {
+      padding: 0.5rem 0.8rem;
+    }
+    a {
+      color: $black;
+      text-decoration: none;
+    }
+  }
+}

@@ -65,19 +65,7 @@ const Payment = () => {
                   Pay Stack
                 </label>
               </div>
-              <div className="form-check">
-                <input
-                  className="form-check-input"
-                  type="radio"
-                  name="payment"
-                  id="flutterwave"
-                  value="flutterwave"
-                  onChange={(e) => setPayMethod(e.target.value)}
-                />
-                <label className="form-check-label" htmlFor="flutterwave">
-                  Flutter Wave
-                </label>
-              </div>
+
               <div className="form-check">
                 <input
                   className="form-check-input"

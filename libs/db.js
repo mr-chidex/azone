@@ -41,11 +41,11 @@ export const disconnectDB = () => {
 };
 
 export const convertObj = (document) => {
-  document._id = document._id.toString();
-  document.createdAt = document.createdAt.toString();
-  document.updatedAt = document.updatedAt.toString();
-  document.user ? (document.user = document.user?.toString()) : null;
-  document.paidAt ? (document.paidAt = document.paidAt?.toString()) : null;
+  document._id = document?._id?.toString();
+  document.createdAt = document?.createdAt?.toDateString();
+  document.updatedAt = document?.updatedAt?.toDateString();
+  document.user ? (document.user = document?.user?.toString()) : null;
+  document.paidAt ? (document.paidAt = document?.paidAt?.toDateString()) : null;
 
   return document;
 };

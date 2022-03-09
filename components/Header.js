@@ -15,7 +15,6 @@ import { useRouter } from "next/router";
 
 import { changeTheme } from "../redux/actions/UI";
 import { useDarkMode } from "../utils/UI";
-import colors from "../utils/colors";
 import { logOutUser } from "../redux/actions/user";
 
 const Header = () => {
@@ -102,7 +101,11 @@ const Header = () => {
                   title={userData?.name}
                 >
                   <Dropdown.Item href="#/action-1">Profile</Dropdown.Item>
-                  <Dropdown.Item href="#/action-2">My Account</Dropdown.Item>
+                  <Dropdown.Item>
+                    <NextLink href="/order-history">
+                      <a>Order History</a>
+                    </NextLink>
+                  </Dropdown.Item>
                   <Dropdown.Item onClick={logoutHandler}>Logout</Dropdown.Item>
                 </DropdownButton>
               )}
