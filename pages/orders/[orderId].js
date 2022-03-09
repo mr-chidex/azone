@@ -2,7 +2,7 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useFlutterwave } from "react-flutterwave";
 import { Button, Card, Col, Container, Row, Table } from "react-bootstrap";
 import { usePaystackPayment } from "react-paystack";
@@ -10,15 +10,16 @@ import { useSelector, useDispatch } from "react-redux";
 import { Order as PayOrder } from "../../models/orders";
 
 import { toast } from "react-toastify";
-import { connectDB, convertObj, disconnectDB } from "../../libs/db";
+import { connectDB, convertObj } from "../../libs/db";
 import ProgressStep from "../../components/ProgressStep";
-import { makePayment } from "../../redux/actions/cart";
+import { makePayment, placeOrderAction } from "../../redux/actions/cart";
 
 const Order = ({ order }) => {
   const router = useRouter();
   const dispatch = useDispatch();
   const { isAuth, userData } = useSelector((state) => state.USER);
   const { orderId } = router.query;
+  const [paid, setPaid] = useState(false);
   const {
     shippingAddress,
     paymentMethod,
@@ -26,6 +27,7 @@ const Order = ({ order }) => {
     totalPrice,
     shippingPrice,
     taxPrice,
+    isPaid,
   } = order;
 
   useEffect(() => {
@@ -34,29 +36,29 @@ const Order = ({ order }) => {
     }
   }, [isAuth, router]);
 
+  useEffect(() => {
+    dispatch(placeOrderAction());
+  }, [dispatch]);
+
   const paystackConfig = {
     reference: new Date().getTime().toString(),
     email: userData?.email,
-    amount: totalPrice * 100,
+    amount: (totalPrice + taxPrice + shippingPrice) * 100,
     publicKey: process.env.NEXT_PUBLIC_PAYSTACK_KEY,
   };
 
-  // you can call this function anything
   const onSuccess = (reference) => {
-    // Implementation for whatever you want to do with reference and after success call.
-    // console.log(reference);
-    dispatch(makePayment(orderId));
+    dispatch(makePayment(orderId, reference));
     toast.success("payment successful");
+
+    setPaid(true);
   };
 
-  // you can call this function anything
   const onClose = () => {
-    // implementation for  whatever you want to do when the Paystack dialog closed.
-    // console.log("closed");
     toast.error("payment canceled");
   };
 
-  // const initializePayment = usePaystackPayment(paystackConfig);
+  const initializePayment = usePaystackPayment(paystackConfig);
   const PlaceOrderHandler = () => {
     if (paymentMethod === "paystack") {
       initializePayment(onSuccess, onClose);
@@ -64,13 +66,12 @@ const Order = ({ order }) => {
     if (paymentMethod === "flutterwave") {
       handleFlutterPayment({
         callback: (response) => {
-          // console.log(response);
-          dispatch(makePayment(orderId));
+          dispatch(makePayment(orderId, response));
           toast.success("message payment successful");
+          setPaid(true);
         },
         onClose: () => {
           toast.error("payment canceled");
-          router.push("/place-order");
         },
       });
     }
@@ -128,6 +129,14 @@ const Order = ({ order }) => {
                   <Card.Title>Payment Method</Card.Title>
 
                   <Card.Text>{`${paymentMethod}`}</Card.Text>
+                  <Card.Text>
+                    status:{" "}
+                    {paid || isPaid ? (
+                      <span className="text-success fw-bold">Paid</span>
+                    ) : (
+                      <span className="text-danger fw-bold">Not Paid</span>
+                    )}{" "}
+                  </Card.Text>
                 </Card.Body>
               </Card>
 
@@ -195,14 +204,16 @@ const Order = ({ order }) => {
                 <span>Total:</span>
                 <p>${totalPrice + taxPrice + shippingPrice}</p>
               </div>
-              <div className="d-grid">
-                <Button
-                  onClick={PlaceOrderHandler}
-                  className="button fw-bolder"
-                >
-                  Make Payment
-                </Button>
-              </div>
+              {!(paid || isPaid) && (
+                <div className="d-grid">
+                  <Button
+                    onClick={PlaceOrderHandler}
+                    className="button fw-bolder"
+                  >
+                    Make Payment
+                  </Button>
+                </div>
+              )}
             </Col>
           </Row>
         </main>
@@ -216,8 +227,6 @@ export const getServerSideProps = async (context) => {
 
   await connectDB();
   const order = await PayOrder.findById(orderId).lean();
-
-  // disconnectDB();
 
   return {
     props: {

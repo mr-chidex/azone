@@ -37,9 +37,11 @@ export const placeOrderAction = () => async (dispatch) => {
   dispatch({ type: PLACE_ORDER_SUCCESS });
 };
 
-export const makePayment = (orderId) => async (dispatch) => {
+export const makePayment = (orderId, ref) => async (dispatch) => {
   try {
-    const { data } = await axios.get(`/api/orders/${orderId}`);
+    const { data } = await axios.put(`/api/orders/${orderId}`, {
+      ref,
+    });
     console.log(data);
   } catch (err) {
     toast.error("support working to fix error");

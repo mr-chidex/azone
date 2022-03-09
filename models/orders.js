@@ -25,6 +25,7 @@ const orderSchema = new Schema(
     deliveredAt: { type: Date, default: null },
     isPaid: { type: Boolean, default: false },
     paidAt: { type: Date, default: null },
+    ref: { type: Object, default: null },
   },
   { timestamps: true }
 );
@@ -37,6 +38,7 @@ const validate = (order) => {
     paymentMethod: Joi.string().trim().required(),
     taxPrice: Joi.number().required(),
     totalPrice: Joi.number().required(),
+    ref: Joi.optional(),
   }).validate(order);
 };
 

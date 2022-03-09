@@ -39,6 +39,7 @@ handler.get(async (req, res) => {
  */
 handler.put(async (req, res) => {
   const { id } = req.query;
+  const { ref } = req.body;
 
   if (!mongoose.isValidObjectId(id))
     return res.status(400).json({ message: "Invalid order id" });
@@ -48,6 +49,7 @@ handler.put(async (req, res) => {
 
   order.isPaid = true;
   order.paidAt = new Date().toDateString();
+  order.ref = ref;
 
   await order.save();
 

@@ -45,6 +45,7 @@ export const convertObj = (document) => {
   document.createdAt = document.createdAt.toString();
   document.updatedAt = document.updatedAt.toString();
   document.user ? (document.user = document.user?.toString()) : null;
+  document.paidAt ? (document.paidAt = document.paidAt?.toString()) : null;
 
   return document;
 };

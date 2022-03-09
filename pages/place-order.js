@@ -5,14 +5,12 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import React, { useEffect } from "react";
 import { Button, Card, Col, Container, Row, Table } from "react-bootstrap";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import ProgressStep from "../components/ProgressStep";
 import { toast } from "react-toastify";
-import { placeOrderAction } from "../redux/actions/cart";
 
 const PlaceOrder = () => {
   const router = useRouter();
-  const dispatch = useDispatch();
   const { isAuth } = useSelector((state) => state.USER);
   const { shippingAddress, paymentMethod, cart } = useSelector(
     (state) => state.CART
@@ -60,7 +58,6 @@ const PlaceOrder = () => {
     try {
       const { data } = await axios.post(`/api/orders`, orderInfo);
 
-      dispatch(placeOrderAction());
       router.push(`/orders/${data?.order?._id}`);
     } catch (error) {
       toast.error("Failed to place order. Please try again");
