@@ -13,6 +13,11 @@
       // margin: none;
     }
 
+    @media (min-width: 768px) {
+      width: 18rem;
+      // margin: none;
+    }
+
     img {
       height: 18rem;
       object-fit: cover;
