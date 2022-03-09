@@ -15,6 +15,8 @@ const handler = nc({
 });
 
 handler.get(async (req, res) => {
+  return res.json({ message: "Haha Haha. No more seed" });
+
   await connectDB();
 
   //seed default users
@@ -25,7 +27,7 @@ handler.get(async (req, res) => {
   await Product.deleteMany();
   await Product.insertMany(data.products);
 
-  await disconnectDB();
+  //  disconnectDB();
   res.json({ message: "seeded successfully" });
 });
 
