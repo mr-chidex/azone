@@ -80,13 +80,14 @@ const OrderHistory = ({ orders }) => {
                         <Button
                           onClick={() => router.push(`orders/${order._id}`)}
                           variant="default"
+                          className="mx-2 my-2"
                         >
                           ...
                         </Button>
 
                         {order?.isPaid && (
                           <Button
-                            className="mx-2"
+                            className="mx-2 my-2"
                             onClick={() => deleteHandler(order._id)}
                             variant="danger"
                           >
