@@ -36,15 +36,15 @@ const Login = () => {
         <title>Azone | Login</title>
       </Head>
 
-      <Container>
+      <Container fluid="xxl">
         <main className="default-margin">
           <section className="form-container">
             <Alert variant="info">
               <Alert.Heading>Test User</Alert.Heading>
               <hr />
               <div>
-                <span className="fw-bold">Email: johndoe@email.com</span>
-                <span className="mx-4 fw-bold">Password: doe123</span>
+                <p>Email: johndoe@email.com</p>
+                <p>Password: doe123</p>
               </div>
             </Alert>
 

@@ -16,6 +16,7 @@ import { useRouter } from "next/router";
 import { changeTheme } from "../redux/actions/UI";
 import { useDarkMode } from "../utils/UI";
 import { logOutUser } from "../redux/actions/user";
+import Drawer from "./Drawer";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -54,9 +55,9 @@ const Header = () => {
               <Navbar.Brand className="logo">Azone</Navbar.Brand>
             </a>
           </NextLink>
-          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          {/* <Navbar.Toggle aria-controls="responsive-navbar-nav" /> */}
 
-          <Navbar.Collapse id="responsive-navbar-nav">
+          <Navbar className="desktop">
             <Nav className="me-auto" />
 
             <Nav className="to">
@@ -71,7 +72,7 @@ const Header = () => {
 
               <NextLink href="/cart">
                 <Nav.Link
-                  className={router.pathname === "/" && "inactive"}
+                  className={router.pathname !== "/cart" && "inactive"}
                   href="/cart"
                 >
                   Cart
@@ -86,7 +87,7 @@ const Header = () => {
               {!isAuth && (
                 <NextLink href="/login">
                   <Nav.Link
-                    className={router.pathname === "/" && "inactive"}
+                    className={router.pathname !== "/login" && "inactive"}
                     href="/login"
                   >
                     Login
@@ -110,7 +111,11 @@ const Header = () => {
                 </DropdownButton>
               )}
             </Nav>
-          </Navbar.Collapse>
+          </Navbar>
+
+          <div className="mobile">
+            <Drawer />
+          </div>
         </Container>
       </Navbar>
     </>
