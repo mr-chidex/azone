@@ -19,7 +19,7 @@ A full stack Ecommerce Next JS application.
 
 ## Clone this project
 
-    $https://github.com/mr-chidex/azone.git
+    $ https://github.com/mr-chidex/azone.git
     $ cd azone
     
 ## Preview
