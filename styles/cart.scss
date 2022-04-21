@@ -1,6 +1,10 @@
 .Cart {
   .cart-content {
     margin-top: 1.5rem;
+
+    .table {
+      background-color: $white;
+    }
     .checkout {
       background-color: $white;
       box-shadow: 2px 3px 10px rgba(165, 164, 164, 0.5);
