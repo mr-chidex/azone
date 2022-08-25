@@ -62,12 +62,17 @@ const Header = () => {
 
             <Nav className="to">
               <div className="switch">
-                <Form.Check
-                  type="switch"
-                  checked={darkMode}
-                  onChange={switchHandler}
-                  id="custom-switch"
-                />
+                {darkMode ? (
+                  <i
+                    onClick={switchHandler}
+                    className="fas fa-moon theme-mode"
+                  ></i>
+                ) : (
+                  <i
+                    onClick={switchHandler}
+                    className="fas fa-sun theme-mode"
+                  ></i>
+                )}
               </div>
 
               <NextLink href="/cart">

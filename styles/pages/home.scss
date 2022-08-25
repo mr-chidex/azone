@@ -7,6 +7,26 @@
     margin-bottom: 2rem;
     width: 80vw;
     margin: 1rem auto;
+    transition: all 0.5s ease;
+    transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1);
+
+    &:hover {
+      transform: perspective(1000px) rotateX(0deg) rotateY(-15deg)
+        scale3d(1, 1, 1);
+    }
+    // &:hover {
+    //   transform: perspective(1000px) rotateX(0deg) rotateY(0deg)
+    //     scale3d(1, 1, 1);
+    // }
+
+    a {
+      overflow: hidden;
+
+      &:hover img {
+        transition: all 0.3s ease;
+        transform: scale(1.05);
+      }
+    }
 
     @media (min-width: 590px) {
       width: 15rem;

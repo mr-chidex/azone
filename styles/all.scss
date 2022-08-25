@@ -2,16 +2,16 @@
 @import "./bootswatch";
 @import "./variables";
 @import "./var";
-@import "./header.scss";
-@import "./home.scss";
-@import "./product.scss";
-@import "./cart.scss";
-@import "./hero.scss";
-@import "./form.scss";
-@import "./shipping.scss";
-@import "./payment.scss";
-@import "./place-order.scss";
-@import "./order-history.scss";
+@import "./components/header.scss";
+@import "./pages/home.scss";
+@import "./pages/products/product.scss";
+@import "./pages/cart.scss";
+@import "./components/hero.scss";
+@import "./pages/form.scss";
+@import "./pages/shipping.scss";
+@import "./pages/payment.scss";
+@import "./pages/place-order.scss";
+@import "./pages/order-history.scss";
 
 * {
   padding: 0rem;
@@ -100,4 +100,15 @@ body {
   margin: 6px 0;
   background: darken($white, 50);
   color: #4b4949;
+}
+
+.theme-mode {
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.btn,
+.btn:focus {
+  box-shadow: none;
 }
