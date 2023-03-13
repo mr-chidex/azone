@@ -34,6 +34,13 @@ class MyDocument extends Document {
             href="/favicon-16x16.png"
           />
           <link rel="manifest" href="/site.webmanifest" />
+          <meta name="description" content="Azone: eCommerce website" />
+          <meta name="keywords" content="shop, cart, product, ecommerce" />
+          <meta property="og:description" content="Azone: eCommerce website" />
+          <meta property="og:title" content="Azone" />
+          <meta property="og:image" content="https://azone.vercel.app/images/1.jpg" />
+          <meta property="og:site_name" content="Azone" />
+     
         </Head>
         <body>
           <Main />
