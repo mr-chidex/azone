@@ -2,7 +2,11 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer>
+    <footer style={{
+      height: "10rem",
+      display: "grid",
+      placeItems: "center"
+    }}>
       <div style={{ textAlign: "center" }}>
         All right reserved | Designed by @
         <a
