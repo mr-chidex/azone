@@ -25,8 +25,8 @@ const Layout = ({ children }) => {
 
       <Container fluid className="main-container" style={mode}>
         <div className="children">{children}</div>
-        <Footer />
       </Container>
+      <Footer />
     </>
   );
 };
