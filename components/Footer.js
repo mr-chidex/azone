@@ -6,7 +6,8 @@ const Footer = () => {
       height: "10rem",
       display: "grid",
       placeItems: "center",
-      background:"#111"
+      background:"#111",
+      color: " #ccc"
     }}>
       <div style={{ textAlign: "center" }}>
         All right reserved | Designed by @
