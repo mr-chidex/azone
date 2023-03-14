@@ -7,11 +7,13 @@ const Footer = () => {
       display: "grid",
       placeItems: "center",
       background:"#111",
-      color: " #ccc"
+      color: "#ccc",
+      marginTop: "2rem"
     }}>
       <div style={{ textAlign: "center" }}>
         All right reserved | Designed by @
         <a
+          style={{color: "#eee"}}
           target="_blank"
           rel="noreferrer noopener"
           href="http://github.com/mr-chidex"
